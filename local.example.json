@@ -1,0 +1,7 @@
+{
+ "lab_root": "C:/path/to/lab/folder (contains References/ and 'Literature synthesis and design principles/')",
+ "shared_folder": "C:/path/to/OneDrive-synced shared PDF folder",
+ "sharepoint_folder_url": "https://<tenant>.sharepoint.com/sites/<site>/Shared Documents/<folder>/",
+ "zotero_group_id": 0,
+ "zotero_key_file": "C:/path/to/zotero.env (one line: ZOTERO_API_KEY=...)"
+}

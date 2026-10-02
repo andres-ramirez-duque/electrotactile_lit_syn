@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Electrotactile Literature Synthesis</title>
+<meta name="description" content="Stimulation parameters, dose and reporting completeness across the electrotactile literature, with a reporting checker for manuscripts.">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="#overview">Electrotactile Literature Synthesis</a>
+    <nav aria-label="Sections">
+      <a href="#overview">Overview</a>
+      <a href="#library">Library</a>
+      <a href="#checker">Reporting checker</a>
+      <a href="#method">Method</a>
+    </nav>
+    <span class="spacer"></span>
+    <button id="theme" type="button" aria-label="Toggle dark mode">Theme</button>
+  </div>
+</header>
+
+<main class="wrap">
+  <!-- Overview -->
+  <section class="page" id="p-overview">
+    <h1>What the electrotactile literature reports, and what it leaves out</h1>
+    <p class="lede">A curated corpus of electrotactile, electrocutaneous and stimulator-hardware papers, each classified by what it contributes and by what stimulation parameters a paper of that kind owes its readers. Doses are recomputed on a common basis so configurations can be compared across studies.</p>
+    <div class="stats" id="stats"></div>
+
+    <div class="card">
+      <h2>Dose landscape</h2>
+      <div class="sub">Charge per phase against charge density per phase, one point per delivered configuration. Electrode area is the free variable: points move along the diagonal as area changes.</div>
+      <div class="legend" id="dose-legend"></div>
+      <div class="chart" id="dose-chart"></div>
+      <figcaption>Shaded bands: I &lt;10, II 10–100, III &gt;100 µC cm⁻². The dashed line is the Shannon (1992) k = 1.5 curve, derived for implanted electrodes and drawn as an external reference, not a skin limit. Values at the upper end of each paper's delivered range.</figcaption>
+    </div>
+
+    <div class="card">
+      <h2>Reporting completeness</h2>
+      <div class="sub">Share of records reporting each parameter, scored only against what that kind of paper owes (its obligation tier).</div>
+      <div class="chart" id="comp-chart"></div>
+      <figcaption id="comp-caption"></figcaption>
+    </div>
+
+    <div class="card">
+      <h2>Corpus by contribution and obligation</h2>
+      <div class="sub">Papers by primary contribution class (rows) and dose-reporting tier (columns).</div>
+      <div class="chart" id="map-chart"></div>
+    </div>
+  </section>
+
+  <!-- Library -->
+  <section class="page" id="p-library" hidden>
+    <h1>Library</h1>
+    <div class="lib">
+      <aside class="facets">
+        <input type="search" id="q" placeholder="Search title, author, DOI…" aria-label="Search the library">
+        <h3>Contribution</h3><div id="f-class"></div>
+        <h3>Reporting tier</h3><div id="f-tier"></div>
+        <h3>Data</h3>
+        <p class="muted" style="font-size:.85rem">Download the dataset: <a href="data/papers.csv">papers.csv</a> · <a href="data/records.csv">records.csv</a></p>
+      </aside>
+      <div>
+        <div class="count" id="count"></div>
+        <div id="results"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Checker -->
+  <section class="page" id="p-checker" hidden>
+    <h1>Reporting checker</h1>
+    <p class="lede">Check whether a manuscript reports the stimulation parameters a paper of its kind is expected to state, before you submit it.</p>
+    <p class="privacy"><b>Your manuscript stays on your computer.</b> The PDF is read by your own browser; nothing is uploaded, stored or sent to any service, including AI services. Close the tab and it is gone.</p>
+    <div class="steps">
+      <div class="step">
+        <h3>What kind of paper is it?</h3>
+        <select id="tier" aria-label="Paper type"></select>
+        <p class="muted" id="tier-desc" style="margin-top:6px;font-size:.9rem"></p>
+      </div>
+      <div class="step">
+        <h3>Add the manuscript</h3>
+        <div class="drop" id="drop">
+          <p>Drop a PDF here, or <label style="color:var(--link);cursor:pointer"><input type="file" id="file" accept="application/pdf" hidden>choose a file</label></p>
+          <p class="muted" style="font-size:.85rem;margin:0">or paste the methods section below</p>
+        </div>
+        <textarea id="paste" rows="5" placeholder="Paste text here…" style="margin-top:10px"></textarea>
+        <div style="margin-top:10px"><button class="btn" id="run" type="button">Check reporting</button></div>
+      </div>
+      <div class="step" id="out-step" hidden>
+        <h3>Result</h3>
+        <div id="out"></div>
+        <p class="muted" style="font-size:.85rem">Detection is pattern-based and conservative: a tick means a matching statement was found; read the quoted evidence to confirm it says what is required. A cross means nothing matching was found, not that the value is wrong.</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <button class="btn ghost" id="dl" type="button">Download checklist (no manuscript text)</button>
+          <button class="btn ghost" type="button" disabled title="Not available yet">Share manuscript with the lab (coming later)</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Method -->
+  <section class="page" id="p-method" hidden>
+    <h1>Method</h1>
+    <div class="card">
+      <h2>Two classifications per paper</h2>
+      <p>A reference collection assembled for relevance is not parametrically comparable: a microneurography study, an impedance model and a stimulator datasheet all omit an electrode area for unrelated reasons. Every paper is therefore classified twice: by its <b>contribution</b> (what it studies) and by its <b>dose-reporting obligation</b> (what a paper of that kind owes a reader).</p>
+      <table id="tier-table"><thead><tr><th>Tier</th><th>Obligation</th><th>Fields expected</th></tr></thead><tbody></tbody></table>
+    </div>
+    <div class="card">
+      <h2>Derived dose</h2>
+      <p>Charge per phase Q = I × pulse width; charge density D = Q / A, with A the area of <i>one</i> active electrode (never an array footprint). Areas given only as a diameter assume a circular contact and are flagged. Values are taken as reported, converted to mA, µs, Hz and mm², and never inferred from field knowledge. Device ratings (compliance voltage, maximum output) are kept apart from doses delivered to participants, and frequencies are labelled by kind: pulse repetition rate, carrier, or instrument bandwidth.</p>
+      <p>Each value is drafted by a language model from the paper's text and approved by a person before it enters the dataset.</p>
+    </div>
+    <div class="card">
+      <h2>Data and reuse</h2>
+      <p>The dataset holds bibliographic metadata and extracted parameters only; follow each DOI for the paper itself. <a href="data/papers.csv">papers.csv</a> · <a href="data/records.csv">records.csv</a></p>
+    </div>
+  </section>
+</main>
+
+<footer class="site"><div class="wrap">BodyElectric · University of Glasgow · <span id="updated"></span></div></footer>
+<div class="tip" id="tip" role="tooltip" hidden></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" defer></script>
+<script src="assets/app.js" defer></script>
+<script src="assets/checker.js" defer></script>
+</body>
+</html>

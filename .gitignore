@@ -1,0 +1,9 @@
+# Never published (docs/architecture.md, "What is published")
+work/
+out/
+.venv/
+*.env
+.env*
+__pycache__/
+*.pdf
+local.json
