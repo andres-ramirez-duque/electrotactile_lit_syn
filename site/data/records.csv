@@ -15,6 +15,7 @@ Gregory2009,delivered,D1_full_dose,tactile_display,10.0,fingertip (index),not_re
 Gregory2009,interface,D1_full_dose,tactile_display,,,,,,,,0.454,,,,,,,,,,,,,,,,,"Dry finger: Rp 194KΩ-616KΩ, Rs 19KΩ-69.8KΩ, Cp 45.4pF-165pF; damp finger: Rp up to 19.8KΩ Rs, Cp 160pF-845pF (Cole-Cole RC model)",,custom-manufactured PCB electrode array,True
 GuzmanMiranda2024,envelope,D2_instrument_envelope,tactile_display,,,,,3.0,,,,,,,,,,,15.0,15.0,,,,,2.0,,True,,,,False
 GuzmanMiranda2024,interface,D2_instrument_envelope,tactile_display,,,,,,,,,,,,,,,,,,,,,,,,,Electrodes 10-15 kΩ (target); microwire electrodes 100-500 kΩ; larger electrodes 10-50 kΩ,1000.0,"silver wire (custom, insulated with nail polish); silver rod return electrode",False
+Hugosdottir2019,delivered,D1_full_dose,fibre_selective_on_skin,25,volar forearm,monophasic,,,50000,0.5,0.031415926535897934,from_diameter,,,,,,,,,,,,,,,,,,,
 Hummel2016,delivered,D1_full_dose,tactile_display,19.0,fingertip,mixed_or_multiple,,,100.0,27.78,3.125,reported,,,,,,,,,,,,,,,,,,,False
 Hummel2016,envelope,D2_instrument_envelope,tactile_display,,,,,10.0,,,,,,,,,,,200.0,100.0,100.0,5.56,27.78,,8.0,,False,,,,False
 Hummel2016,interface,D1_full_dose,tactile_display,,,,,,,,3.125,,,,,,,,,,,,,,,,,"calculated via Ohm's law from voltage and current sense (skin resistance derived, not a fixed numeric value reported)",,gold-coated PCB electrodes,False

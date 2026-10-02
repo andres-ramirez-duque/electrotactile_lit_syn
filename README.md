@@ -55,3 +55,6 @@ Design: `docs/architecture.md`. Run with `.venv/Scripts/python -m pipeline <comm
 - A regenerated curated .bib is coming; rerun `match_library.py` + `rekey.py` against it.
 - Hugosdottir2019 and Zhou2022 are tagged `needs-classification` (never went through the extraction).
 - SharePoint links assume the synced folder is `Shared Documents/References`; confirm one opens.
+
+## License
+Code: MIT (`LICENSE`). Dataset (`data/`, `site/data/`): CC BY 4.0 (`data/LICENSE.md`).
