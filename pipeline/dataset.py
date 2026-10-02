@@ -152,3 +152,19 @@ def publish():
     for name in ("papers.csv", "records.csv"):  # the downloadable dataset, same files as data/
         shutil.copy2(DATA / name, SITE_DATA / name)
     return len(papers), len(records), len(comp)
+
+
+def stamp_assets():
+    """Add ?v=<content hash> to the asset links in site/index.html, so browsers fetch a changed script or
+    stylesheet at once instead of serving GitHub Pages' 10-minute cached copy."""
+    import hashlib
+    from config import PROJECT
+    site = PROJECT / "site"
+    page = (site / "index.html").read_text(encoding="utf-8")
+
+    def stamp(m):
+        f = site / m.group(1)
+        return f'"{m.group(1)}?v={hashlib.sha1(f.read_bytes()).hexdigest()[:8]}"' if f.exists() else m.group(0)
+    new = re.sub(r'"(assets/[\w.-]+\.(?:js|css))(?:\?v=\w+)?"', stamp, page)
+    (site / "index.html").write_text(new, encoding="utf-8")
+    return new != page

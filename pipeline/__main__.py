@@ -204,6 +204,8 @@ def cmd_status(a):
 
 def cmd_publish(a):
     print("papers, records, completeness rows:", dataset.publish())
+    if dataset.stamp_assets():
+        print("asset links in site/index.html re-stamped")
 
 
 def cmd_seed(a):
