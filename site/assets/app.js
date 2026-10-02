@@ -71,7 +71,8 @@ try { const t = localStorage.getItem("theme"); if (t) document.documentElement.d
 // ---------- data ----------
 let DATA = null;
 async function load() {
-  const get = (n) => fetch(`data/${n}.json`).then((r) => r.json());
+  // Pages caches for 10 min; revalidate so a freshly published dataset shows at once (unchanged files stay 304)
+  const get = (n) => fetch(`data/${n}.json`, { cache: "no-cache" }).then((r) => r.json());
   const [papers, records, completeness, standard] = await Promise.all(["papers", "records", "completeness", "standard"].map(get));
   DATA = { papers, records, completeness, standard, byKey: Object.fromEntries(papers.map((p) => [p.citekey, p])) };
   window.ETS.DATA = DATA;
