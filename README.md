@@ -48,13 +48,15 @@ Design: `docs/architecture.md`. Run with `.venv/Scripts/python -m pipeline <comm
 ## Library migration: manual decisions
 `tools/match_overrides.csv` records the matches made by hand (with reasons).
 
-## Open items (2026-10-02)
+## Open items (updated 2026-10-05)
 - `out/TODO_review_not_in_bib.csv`: 11 papers in table4 but not in the curated .bib; decide add/drop.
-- `out/TODO_manual_downloads.csv`: .bib entries still without a PDF (8 open-access ones fetched 2026-10-02).
-  Drop new PDFs into `References/`, add a line to `tools/match_overrides.csv`, rerun the three tools.
-- A regenerated curated .bib is coming; rerun `match_library.py` + `rekey.py` against it.
-- Hugosdottir2019 and Zhou2022 are tagged `needs-classification` (never went through the extraction).
-- SharePoint links assume the synced folder is `Shared Documents/References`; confirm one opens.
+- `out/TODO_manual_downloads.csv`: 18 .bib entries without a PDF (6 open access but blocking scripts, 11 paywalled,
+  plus the IEC 60601-2-10 standard). Drop PDFs into `References/` named `<BibKey>_...pdf`, then run the tools.
+- A regenerated curated .bib is coming; rerun `match_library.py` + `rekey.py` against it. Give Kajimoto1999 a booktitle.
+- 26 Zotero items tagged `needs-classification`: .bib papers never extracted. 8 already have PDFs and can go through
+  the pipeline.
+- Choose the language-model backend (GitHub Models/Copilot, an open model, or the Claude API).
+- Site: chart labels are small at phone width; the checker's PDF upload is untested on a real PDF.
 
 ## License
 Code: MIT (`LICENSE`). Dataset (`data/`, `site/data/`): CC BY 4.0 (`data/LICENSE.md`).
