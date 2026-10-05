@@ -132,6 +132,20 @@ button.btn.ghost { background: none; color: var(--link); border: 1px solid var(-
 button.btn[disabled] { opacity: .5; cursor: not-allowed; }
 .score { font-size: 1.4rem; font-weight: 600; }
 
+/* Top venues */
+.venues h3 { font-size: .8rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 4px 0 8px; }
+.venues ol { list-style: none; padding: 0; margin: 0; }
+.venues li { display: grid; grid-template-columns: 1.6em 1fr auto; gap: 4px 10px; align-items: baseline; padding: 8px 0;
+  border-bottom: 1px solid var(--grid); }
+.venues .rk { color: var(--muted); font-variant-numeric: tabular-nums; }
+.venues button { font: inherit; color: var(--link); background: none; border: 0; padding: 0; text-align: left; cursor: pointer; }
+.venues button:hover { text-decoration: underline; }
+.venues .n { color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.venues .bar { grid-column: 2 / 4; height: 6px; border-radius: 0 3px 3px 0; background: var(--series-1); }
+.filter-chip { display: inline-flex; gap: 8px; align-items: center; font-size: .85rem; background: var(--chip); color: var(--ink-2);
+  border-radius: 999px; padding: 3px 6px 3px 12px; margin-bottom: 4px; }
+.filter-chip button { font: inherit; background: none; border: 0; color: var(--ink-2); cursor: pointer; padding: 0 4px; }
+
 footer.site { border-top: 1px solid var(--grid); color: var(--muted); font-size: .85rem; padding: 24px 0 40px; }
 .tip { position: fixed; pointer-events: none; background: var(--card); color: var(--ink); border: 1px solid var(--border);
   border-radius: 6px; padding: 8px 10px; font-size: .82rem; box-shadow: 0 4px 16px rgba(0,0,0,.12); max-width: 280px; z-index: 10; }

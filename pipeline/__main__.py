@@ -9,6 +9,7 @@
   status                 every paper in work/ and its stage
   seed                   rebuild data/ from the 2026-09-17 synthesis (one-off)
   publish                write site/data/*.json from data/ for the static site
+  venues                 refresh venue type/name for every paper (Crossref, cached) and show the ranking
 
 Every stage records its result in work/papers/<citekey>/state.json, so a paper can stop anywhere (waiting for a
 PDF, for a model answer, for review) and pick up from there.
@@ -29,6 +30,7 @@ import kernel
 import llm
 import match_library as ml
 import resolve
+import venues
 
 FRONT_MATTER = 2600  # chars of the paper's start sent with the excerpt, as in the 2026-09-17 extraction
 
@@ -132,7 +134,7 @@ def draft(d, st):
     tier = kernel.etd_assign_tier(x["contribution_class"], x["stimulation_regime"],
                                   bool(x["delivers_stimulus_to_humans"]), bool(x["has_device_envelope"]))
     paper = {"citekey": st["citekey"], "first_author": ml.citekey(e)[:-4], "year": e.get("year", ""),
-             "title": e.get("title", ""), "venue": e.get("journal") or e.get("booktitle", ""), "doi": st["doi"],
+             "title": e.get("title", ""), "doi": st["doi"],
              "contribution_class": x["contribution_class"], "secondary_class": x.get("secondary_class", "none"),
              "stimulation_regime": x["stimulation_regime"], "tier": tier,
              "delivers_stimulus_to_humans": bool(x["delivers_stimulus_to_humans"]),
@@ -140,6 +142,9 @@ def draft(d, st):
              "has_device_envelope": bool(x["has_device_envelope"]), "key_design_claim": x.get("key_design_claim", ""),
              "obligation_rationale": x.get("obligation_rationale", ""), "in_bib": st["in_bib"],
              "source": f"pipeline_{datetime.date.today()}", "status": "approved"}
+    msg = venues.crossref_cached(st["doi"])
+    paper["venue_type"], paper["venue"], paper["venue_key"] = (venues.from_crossref(msg) if msg
+                                                              else venues.from_bib(e, e.get("journal", "")))
     recs = kernel.etd_split_records([x]).to_dict("records")
     records = [dataset.derive({**{k: ("" if v != v else v) for k, v in r.items()}, "citekey": st["citekey"]})
                for r in recs]
@@ -208,6 +213,14 @@ def cmd_publish(a):
         print("asset links in site/index.html re-stamped")
 
 
+def cmd_venues(a):
+    dataset.backfill_venues()
+    for kind, lst in venues.rank(dataset.read("papers.csv")).items():
+        print(f"\n{kind} ({len(lst)} venues)")
+        for v in lst[:6]:
+            print(f"  {v['rank']:>2}. {v['name']}  ({v['n']})")
+
+
 def cmd_seed(a):
     print("papers, records:", dataset.seed_from_synthesis())
 
@@ -225,6 +238,7 @@ def main():
     sub.add_parser("status")
     sub.add_parser("seed")
     sub.add_parser("publish")
+    sub.add_parser("venues")
     a = ap.parse_args()
     WORK.mkdir(parents=True, exist_ok=True)
     globals()["cmd_" + a.cmd](a)

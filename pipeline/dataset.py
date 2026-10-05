@@ -11,7 +11,7 @@ import shutil
 
 from config import DATA, SYNTHESIS
 
-PAPER_COLS = ["citekey", "first_author", "year", "title", "venue", "doi", "contribution_class",
+PAPER_COLS = ["citekey", "first_author", "year", "title", "venue", "venue_type", "venue_key", "doi", "contribution_class",
               "secondary_class", "stimulation_regime", "tier", "delivers_stimulus_to_humans", "n_participants",
               "has_device_envelope", "key_design_claim", "obligation_rationale", "in_bib", "source", "status"]
 RECORD_COLS = ["citekey", "record_type", "tier", "dose_group", "n_participants", "body_site", "waveform_polarity",
@@ -112,7 +112,27 @@ def seed_from_synthesis():
     records = [{**r, "citekey": stem_key[r["stem"]]} for r in t1 if r["stem"] not in dup_stems]
     write("papers.csv", sorted(papers, key=lambda p: p["citekey"].lower()), PAPER_COLS)
     write("records.csv", sorted(records, key=lambda r: (r["citekey"].lower(), r["record_type"])), RECORD_COLS)
+    backfill_venues()
     return len(papers), len(records)
+
+
+def backfill_venues():
+    """Venue type, canonical name and grouping key for every paper; also takes a missing DOI from the .bib."""
+    import match_library as ml
+    import venues
+    bib = ml.parse_bib((ml.REFS / "references.bib").read_text(encoding="utf-8"))
+    keys = ml.assign_citekeys(bib)
+    by_key = {keys[e["key"]]: e for e in bib if e["key"] in keys}
+    papers = read("papers.csv")
+    for p in papers:
+        e = by_key.get(p["citekey"], {})
+        if not p["doi"] and e.get("doi"):
+            p["doi"] = ml.norm_doi(e["doi"])
+        msg = venues.crossref_cached(p["doi"]) if p["doi"] else None
+        vt, vn, vk = venues.from_crossref(msg) if msg else venues.from_bib({**e, "doi": p["doi"]}, p.get("venue", ""))
+        p.update(venue_type=vt, venue=vn, venue_key=vk)
+    write("papers.csv", papers, PAPER_COLS)
+    return papers
 
 
 
@@ -143,10 +163,15 @@ def publish():
         p.pop("source", None)
         p.pop("status", None)
     comp = kernel.etd_reporting_completeness(pd.DataFrame(records)).to_dict("records")
+    import venues
+    ranked = venues.rank(read("papers.csv"))
     standard = {tier: [{"label": l, "field": c} for l, c, _k in fields]
                 for tier, fields in kernel.etd_obligation_fields().items()}
     SITE_DATA.mkdir(parents=True, exist_ok=True)
-    for name, obj in {"papers": papers, "records": records, "completeness": comp, "standard": standard}.items():
+    for p in papers:
+        p.pop("venue_key", None)
+    for name, obj in {"papers": papers, "records": records, "completeness": comp, "standard": standard,
+                      "venues": ranked}.items():
         (SITE_DATA / f"{name}.json").write_text(json.dumps(obj, ensure_ascii=False, separators=(",", ":"),
                                                            allow_nan=False, default=str), encoding="utf-8")
     for name in ("papers.csv", "records.csv"):  # the downloadable dataset, same files as data/

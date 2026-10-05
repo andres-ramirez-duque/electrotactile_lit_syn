@@ -73,10 +73,12 @@ let DATA = null;
 async function load() {
   // Pages caches for 10 min; revalidate so a freshly published dataset shows at once (unchanged files stay 304)
   const get = (n) => fetch(`data/${n}.json`, { cache: "no-cache" }).then((r) => r.json());
-  const [papers, records, completeness, standard] = await Promise.all(["papers", "records", "completeness", "standard"].map(get));
-  DATA = { papers, records, completeness, standard, byKey: Object.fromEntries(papers.map((p) => [p.citekey, p])) };
+  const [papers, records, completeness, standard, venues] = await Promise.all(
+    ["papers", "records", "completeness", "standard", "venues"].map(get));
+  DATA = { papers, records, completeness, standard, venues, byKey: Object.fromEntries(papers.map((p) => [p.citekey, p])) };
   window.ETS.DATA = DATA;
   renderStats();
+  renderVenues();
   drawCharts();
   initLibrary();
   renderMethod();
@@ -98,6 +100,31 @@ function renderStats() {
   const years = papers.map((p) => +p.year).filter(Boolean);
   $("#updated").textContent = `${papers.length} papers, ${Math.min(...years)}–${Math.max(...years)}`;
 }
+
+// ---------- top venues ----------
+function renderVenues() {
+  const col = (type, title) => {
+    const all = DATA.venues[type] || [];
+    const top = all.filter((v) => v.rank <= 3), max = Math.max(...top.map((v) => v.n));
+    return `<div class="venues"><h3>${title}</h3><ol>${top.map((v) => `
+      <li><span class="rk">${v.rank}</span>
+        <button type="button" data-venue="${esc(v.name)}">${esc(v.name)}</button>
+        <span class="n">${v.n} paper${v.n > 1 ? "s" : ""}</span>
+        <span class="bar" style="width:${(100 * v.n) / max}%" aria-hidden="true"></span></li>`).join("")}</ol></div>`;
+  };
+  $("#venues").innerHTML = col("journal", "Journals") + col("conference", "Conferences");
+  const n = (t) => DATA.papers.filter((p) => p.venue_type === t).length;
+  $("#venues-caption").textContent = `${n("journal")} journal papers across ${(DATA.venues.journal || []).length} journals; ` +
+    `${n("conference")} conference papers across ${(DATA.venues.conference || []).length} conference series. ` +
+    `Journals are grouped by ISSN; conferences by series, all editions together.`;
+}
+$("#venues").addEventListener("click", (e) => {
+  const b = e.target.closest("button[data-venue]");
+  if (!b) return;
+  state.venue = b.dataset.venue;
+  location.hash = "#library";
+  renderResults();
+});
 
 // ---------- charts ----------
 function drawCharts() {
@@ -264,7 +291,7 @@ function drawMap() {
 }
 
 // ---------- library ----------
-const state = { q: "", cls: new Set(), tier: new Set() };
+const state = { q: "", cls: new Set(), tier: new Set(), venue: "" };
 function initLibrary() {
   const facet = (id, key, labels, set) => {
     const counts = {};
@@ -282,9 +309,12 @@ function initLibrary() {
 function renderResults() {
   const list = DATA.papers.filter((p) =>
     (!state.cls.size || state.cls.has(p.contribution_class)) && (!state.tier.size || state.tier.has(p.tier)) &&
+    (!state.venue || p.venue === state.venue) &&
     (!state.q || [p.title, p.first_author, p.doi, p.venue, p.citekey, p.year].join(" ").toLowerCase().includes(state.q)))
     .sort((a, b) => (b.year || 0) - (a.year || 0) || a.citekey.localeCompare(b.citekey));
   $("#count").textContent = `${list.length} of ${DATA.papers.length} papers`;
+  $("#active-venue").innerHTML = state.venue
+    ? `<span class="filter-chip">Venue: ${esc(state.venue)}<button type="button" aria-label="Clear venue filter">×</button></span>` : "";
   $("#results").innerHTML = list.map((p) => `
     <article class="result">
       <div class="meta">${[p.year, p.venue].filter(Boolean).map(esc).join(" · ")}</div>
@@ -296,6 +326,10 @@ function renderResults() {
       <div class="detail" hidden></div>
     </article>`).join("");
 }
+
+$("#active-venue").addEventListener("click", (e) => {
+  if (e.target.closest("button")) { state.venue = ""; renderResults(); }
+});
 
 $("#results").addEventListener("click", (e) => {
   const b = e.target.closest("button.title");

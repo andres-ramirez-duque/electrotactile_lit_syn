@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Electrotactile Literature Synthesis</title>
 <meta name="description" content="Stimulation parameters, dose and reporting completeness across the electrotactile literature, with a reporting checker for manuscripts.">
-<link rel="stylesheet" href="assets/style.css?v=53ef478e">
+<link rel="stylesheet" href="assets/style.css?v=96612c20">
 </head>
 <body>
 <header class="site">
@@ -45,6 +45,13 @@
     </div>
 
     <div class="card">
+      <h2>Where this literature is published</h2>
+      <div class="sub">Top three journals and conferences by number of papers in the corpus. Ties share a rank, so a list can run past three.</div>
+      <div class="two" id="venues"></div>
+      <figcaption id="venues-caption"></figcaption>
+    </div>
+
+    <div class="card">
       <h2>Corpus by contribution and obligation</h2>
       <div class="sub">Papers by primary contribution class (rows) and dose-reporting tier (columns).</div>
       <div class="chart" id="map-chart"></div>
@@ -64,6 +71,7 @@
       </aside>
       <div>
         <div class="count" id="count"></div>
+        <div id="active-venue"></div>
         <div id="results"></div>
       </div>
     </div>
@@ -126,7 +134,7 @@
 <div class="tip" id="tip" role="tooltip" hidden></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" defer></script>
-<script src="assets/app.js?v=d4020827" defer></script>
+<script src="assets/app.js?v=317b2ddf" defer></script>
 <script src="assets/checker.js?v=350c05b3" defer></script>
 </body>
 </html>
