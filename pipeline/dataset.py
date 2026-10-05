@@ -89,7 +89,14 @@ def seed_from_synthesis():
 
     by_doi = {ml.norm_doi(e.get("doi")): e["key"] for e in bib if e.get("doi") and e["key"] in keys}
     stem_key, papers, seen, dup_stems = {}, [], set(), set()
+    # papers the lab decided to leave out (data/excluded.csv) stay out on every rebuild
+    excl = read("excluded.csv")
+    excl_doi = {ml.norm_doi(x["doi"]) for x in excl if x["doi"]}
+    excl_title = {ml.stem_norm(x["title"]) for x in excl}
     for r in t4:
+        if ml.norm_doi(r["doi"]) in excl_doi or ml.stem_norm(r["title"]) in excl_title:
+            dup_stems.add(r["stem"])  # drops its records too
+            continue
         pdf = next((p for s, p in pdf_stems.items() if s.startswith(ml.stem_norm(r["stem"]))), None)
         m = match.get(pdf, {})
         # a table4 row whose file was since renamed (Zhou2022) or skipped as a duplicate copy (TaxTec = TacTex)
@@ -110,6 +117,11 @@ def seed_from_synthesis():
         papers.append({**r, "citekey": ck, "in_bib": in_bib, "key_design_claim": "",
                        "source": f"synthesis_2026-09-17_{r['added_in']}", "status": "approved"})
     records = [{**r, "citekey": stem_key[r["stem"]]} for r in t1 if r["stem"] not in dup_stems]
+    # papers added through the pipeline since the synthesis are not in table4: keep them and their records
+    later = [p for p in read("papers.csv") if p.get("source", "").startswith("pipeline_")]
+    keep = {p["citekey"] for p in later}
+    papers = [p for p in papers if p["citekey"] not in keep] + later
+    records = [r for r in records if r["citekey"] not in keep] + [r for r in read("records.csv") if r["citekey"] in keep]
     write("papers.csv", sorted(papers, key=lambda p: p["citekey"].lower()), PAPER_COLS)
     write("records.csv", sorted(records, key=lambda r: (r["citekey"].lower(), r["record_type"])), RECORD_COLS)
     backfill_venues()

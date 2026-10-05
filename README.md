@@ -49,7 +49,8 @@ Design: `docs/architecture.md`. Run with `.venv/Scripts/python -m pipeline <comm
 `tools/match_overrides.csv` records the matches made by hand (with reasons).
 
 ## Open items (updated 2026-10-05)
-- `out/TODO_review_not_in_bib.csv`: 11 papers in table4 but not in the curated .bib; decide add/drop.
+- Done 2026-10-05: the 11 table4 papers missing from the .bib: 9 added (.bib, Zotero, shared folder), 2 dropped
+  (`data/excluded.csv`, PDFs in `References/_excluded/`).
 - `out/TODO_manual_downloads.csv`: 18 .bib entries without a PDF (6 open access but blocking scripts, 11 paywalled,
   plus the IEC 60601-2-10 standard). Drop PDFs into `References/` named `<BibKey>_...pdf`, then run the tools.
 - A regenerated curated .bib is coming; rerun `match_library.py` + `rekey.py` against it. Give Kajimoto1999 a booktitle.

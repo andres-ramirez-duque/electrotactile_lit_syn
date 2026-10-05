@@ -73,8 +73,6 @@ Meng2025,envelope,D2_instrument_envelope,tactile_display,,,,,5.0,,,,,,,,,,,50.0,
 Meng2025,interface,D1_full_dose,tactile_display,,,,,,,,,,,,,,,,,,,,,,,,,human skin impedance generally ranges from 1k to 10k ohm; tested with 5k ohm resistor load,,,False
 Mereu2024,delivered,D1n_nondisplay_dose,tactile_display,7.0,"forearm/hand (median and ulnar nerve territories, wearable TENS electrodes)",biphasic_symmetric,1.0,5.0,,,,unknown,,,,,,,,,,,,,,,,,,,False
 Mereu2024,envelope,D2_instrument_envelope,tactile_display,,,,,5.0,,,,,,,,,,,14.0,100.0,500.0,50.0,600.0,,30.0,,True,,,,False
-Mohammed2026,envelope,D2i_ac_instrument_envelope,tactile_display,,,,,,,,,,,,,,,,,,,,,,1.0,,True,,,,False
-Mohammed2026,interface,D2_instrument_envelope,tactile_display,,,,,,,,,,,,,,,,,,,,,,,,,"Rbody = 65 Ω, Cbody = 25 pF for 10 cm limb channel; air coupling capacitance 10-30 fF; electrode matched to 50 Ω; path gain -44 to -48 dB (mean -46±3 dB) for 5-12 cm channels",40000000.0,PLA plastic (3.1 relative permittivity) with skin and floating conductive plates; limb electrodes 30x40mm with 11mm plate separation; finger electrode 20x30mm floating plate with 1cm skin conductor in 20.6mm diameter ring,True
 Mohsen2021,interface,D5_aggregate_envelope,tactile_display,,,,,,,,,,,,,,,,,,,,,,,,,"Fractional-order circuit model parameters (Cole, Hayden, Double-Shell, onion dehydration, etc.) fit to bio-impedance of fruits/vegetables (carrot, tomato, zucchini, cucumber) over 100Hz-500kHz",500000.0,Ag/AgCl electrodes,True
 Morcelles2017,envelope,D2i_ac_instrument_envelope,tactile_display,,,,,1.0,,,,,,,,,,,5.0,,,100.0,,10000000.0,1.0,,True,,,,False
 Nagi2019,delivered,D1n_nondisplay_dose,fibre_selective_on_skin,103.0,peroneal or radial nerve (intraneural),monophasic,0.0063,0.0063,200.0,30.0,,unknown,,0.00126,,,,,,,,,,,,,,,,,False
@@ -98,7 +96,6 @@ Strbac2019,delivered,D1_full_dose,tactile_display,1.0,forearm (wrist/finger flex
 Strbac2019,envelope,D2_instrument_envelope,tactile_display,,,,,5.0,,,,,,,,,,,50.0,50.0,500.0,1.0,100.0,,16.0,,False,,,,False
 Strong1970,delivered,D1_full_dose,tactile_display,3.0,,biphasic_symmetric,,0.05,600.0,200.0,2.482866647577739,from_diameter,2.0138012667244745,0.03,1.2082807600346848,0.2416561520069369,0.0011462757764006863,I_low_density_large_area,,,,,,,,,,,,,False
 Strong1970,interface,D1_full_dose,tactile_display,,,,,,,,2.482866647577739,,,,,,,,,,,,,,,,,5000-10 000 ohms with both electrodes wet; source output impedance 200 000 ohms,,"metal point electrodes (70 mil diameter), insulating plastic substrate",False
-Strong1970a,delivered,D1_full_dose,tactile_display,4.0,finger tips / palm,biphasic_symmetric,,,250.0,125.0,2.4884555409084754,from_diameter,,,,,,,,,,,,,,,,,,,False
 Szeto1985,delivered,D1_full_dose,tactile_display,12.0,"left forearm, ~4 cm below elbow joint",monophasic,3.0,6.0,200.0,100.0,,unknown,,1.2,,,,,,,,,,,,,,,,,False
 Tigerholm2020,delivered,D1_full_dose,fibre_selective_on_skin,19.0,forearm skin (pin and patch electrodes),not_reported,,,,,8.8,reported,,,,,,,,,,,,,,,,,,,False
 Trinitatova2022,delivered,D1_full_dose,tactile_display,12.0,hand/fingers,not_reported,,,,,,unknown,,,,,,,,,,,,,,,,,,,False
