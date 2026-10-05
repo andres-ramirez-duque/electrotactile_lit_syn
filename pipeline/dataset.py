@@ -104,6 +104,8 @@ def seed_from_synthesis():
         bk = m["bib_key"] if m.get("status") == "OK" else by_doi.get(ml.norm_doi(r["doi"]))
         if bk:
             ck, in_bib = keys[bk], True
+            # the curated .bib wins over table4 on the year (Kilgore: online 2013, issue 2014)
+            r = {**r, "year": next(e for e in bib if e["key"] == bk).get("year") or r["year"]}
         else:
             base = re.sub(r"[^A-Za-z]", "", ml.ascii_fold(r["first_author"])) + r["year"]
             ck = next(base + s for s in [""] + list("abcdefghijklmnopqrstuvwxyz") if base + s not in taken)
