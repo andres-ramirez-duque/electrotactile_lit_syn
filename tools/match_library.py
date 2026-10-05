@@ -13,7 +13,7 @@ from pathlib import Path
 
 from local import LAB_ROOT as ROOT
 REFS = ROOT / "References"
-TABLE4 = ROOT / "Literature synthesis and design principles" / "table4_corpus_classification.csv"
+TABLE4 = ROOT / "Literature synthesis and design principles" / "tables" / "table4_corpus_classification.csv"
 OVERRIDES = Path(__file__).resolve().parent / "match_overrides.csv"  # pdf,bib_key|skip,note
 OUT = Path(__file__).resolve().parent.parent / "out" / "library_match.csv"
 

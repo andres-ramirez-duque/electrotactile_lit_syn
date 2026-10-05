@@ -51,11 +51,11 @@ Design: `docs/architecture.md`. Run with `.venv/Scripts/python -m pipeline <comm
 ## Open items (updated 2026-10-05)
 - Done 2026-10-05: the 11 table4 papers missing from the .bib: 9 added (.bib, Zotero, shared folder), 2 dropped
   (`data/excluded.csv`, PDFs in `References/_excluded/`).
-- `out/TODO_manual_downloads.csv`: 18 .bib entries without a PDF (6 open access but blocking scripts, 11 paywalled,
-  plus the IEC 60601-2-10 standard). Drop PDFs into `References/` named `<BibKey>_...pdf`, then run the tools.
+- Done 2026-10-05: 12 hand-downloaded PDFs linked. Dropped Miao2017, Esram2007, Bhadra2005 (.bib; Zotero trash);
+  Felizardo2016 and vanRaan2004 stay in .bib/Zotero but never on the site (`data/excluded.csv`, scope site_only;
+  Zotero tag `not-on-site`). Still without a PDF: IEC2023 (standard).
 - A regenerated curated .bib is coming; rerun `match_library.py` + `rekey.py` against it. Give Kajimoto1999 a booktitle.
-- 26 Zotero items tagged `needs-classification`: .bib papers never extracted. 8 already have PDFs and can go through
-  the pipeline.
+- 21 Zotero items tagged `needs-classification`: .bib papers never extracted; 20 have PDFs and can go through the pipeline.
 - Choose the language-model backend (GitHub Models/Copilot, an open model, or the Claude API).
 - Site: chart labels are small at phone width; the checker's PDF upload is untested on a real PDF.
 

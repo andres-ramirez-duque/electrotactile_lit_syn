@@ -62,6 +62,12 @@ def cmd_add(a):
         doi = resolve.find_doi(" ".join(doc[i].get_textpage().get_text_range() for i in range(min(2, len(doc)))))
     if not doi:
         raise SystemExit("no DOI found; pass the DOI or the paper's doi.org link")
+    # papers the lab decided to keep off the site (or out entirely) never re-enter through the pipeline
+    excluded = {ml.norm_doi(x["doi"]): x for x in dataset.read("excluded.csv") if x["doi"]}
+    if ml.norm_doi(doi) in excluded:
+        x = excluded[ml.norm_doi(doi)]
+        raise SystemExit(f"{x['citekey']} is excluded ({x['scope']}, {x['decided']}): {x['reason']}. "
+                         f"Remove it from data/excluded.csv to add it after all.")
     entry = resolve.to_entry(resolve.crossref(doi))
 
     # a paper already in the dataset or the .bib keeps its key (re-extraction replaces, never duplicates)

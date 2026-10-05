@@ -81,8 +81,8 @@ def seed_from_synthesis():
     import match_library as ml
     bib = ml.parse_bib((ml.REFS / "references.bib").read_text(encoding="utf-8"))
     keys = ml.assign_citekeys(bib)
-    t4 = list(csv.DictReader(open(SYNTHESIS / "table4_corpus_classification.csv", encoding="utf-8")))
-    t1 = list(csv.DictReader(open(SYNTHESIS / "table1_stimulation_parameters.csv", encoding="utf-8")))
+    t4 = list(csv.DictReader(open(SYNTHESIS / "tables" / "table4_corpus_classification.csv", encoding="utf-8")))
+    t1 = list(csv.DictReader(open(SYNTHESIS / "tables" / "table1_stimulation_parameters.csv", encoding="utf-8")))
     match = {r["pdf"]: r for r in csv.DictReader(open(ml.OUT, encoding="utf-8"))}
     pdf_stems = {ml.stem_norm(p[:-4]): p for p in match}
     taken = set(keys.values())

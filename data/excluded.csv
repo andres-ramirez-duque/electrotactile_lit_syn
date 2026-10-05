@@ -1,3 +1,8 @@
-citekey,doi,title,reason,decided
-Mohammed2026,10.1109/ojemb.2026.3688340,An Intra-Body Power Transfer System via Localized Capacitive Coupling,not a sensory stimulator (intra-body power transfer),2026-10-05
-Strong1970a,,An Explorable Electrotactile Display,PhD thesis overlapping the journal paper Strong1970,2026-10-05
+citekey,doi,title,reason,decided,scope
+Mohammed2026,10.1109/ojemb.2026.3688340,An Intra-Body Power Transfer System via Localized Capacitive Coupling,not a sensory stimulator (intra-body power transfer),2026-10-05,everywhere
+Strong1970a,,An Explorable Electrotactile Display,PhD thesis overlapping the journal paper Strong1970,2026-10-05,everywhere
+Miao2017,10.3390/s17081759,An Adaptive Impedance Matching Network with Closed Loop Control Algorithm for Inductive Wireless Power Transfer,"wireless power transfer, outside the corpus scope",2026-10-05,everywhere
+Esram2007,10.1109/tec.2006.874230,Comparison of Photovoltaic Array Maximum Power Point Tracking Techniques,"photovoltaic MPPT, outside the corpus scope",2026-10-05,everywhere
+Bhadra2005,10.1002/mus.20428,High‐frequency electrical conduction block of mammalian peripheral motor nerve,"motor-nerve conduction block, outside the corpus scope",2026-10-05,everywhere
+Felizardo2016,10.1145/2961111.2962630,Using Forward Snowballing to update Systematic Reviews in Software Engineering,review-methodology background; kept in .bib and Zotero,2026-10-05,site_only
+vanRaan2004,10.1023/b:scie.0000018543.82441.f1,Sleeping Beauties in science,scientometrics background; kept in .bib and Zotero,2026-10-05,site_only
