@@ -11,7 +11,7 @@ table4 stems are the filename with punctuation replaced by '_' and truncated, he
 import argparse, csv, difflib, re, unicodedata
 from pathlib import Path
 
-from local import LAB_ROOT as ROOT
+from local import LAB_ROOT as ROOT, BIB_FILE as BIB, BIB_KEYS_FINAL
 REFS = ROOT / "References"
 TABLE4 = ROOT / "Literature synthesis and design principles" / "tables" / "table4_corpus_classification.csv"
 OVERRIDES = Path(__file__).resolve().parent / "match_overrides.csv"  # pdf,bib_key|skip,note
@@ -95,6 +95,12 @@ def citekey(entry):
 
 
 def assign_citekeys(bib):
+    if BIB_KEYS_FINAL:  # Zotero export: keys are already the citation keys, never recompute them
+        return {e["key"]: e["key"] for e in bib if e.get("title")}
+    return _derive_citekeys(bib)
+
+
+def _derive_citekeys(bib):
     """Malesevic2021, Malesevic2021a, ... A letter already chosen in the curated .bib key wins
     (Kajimoto2002b stays b); the rest take the next free letter in .bib order."""
     letters = [""] + list("abcdefghijklmnopqrstuvwxyz")
@@ -118,7 +124,7 @@ def main():
     ap.add_argument("--cutoff", type=float, default=0.55, help="fuzzy title score below this is 'unmatched'")
     a = ap.parse_args()
 
-    bib = parse_bib((REFS / "references.bib").read_text(encoding="utf-8"))
+    bib = parse_bib(BIB.read_text(encoding="utf-8"))
     by_doi = {norm_doi(e.get("doi")): e for e in bib if e.get("doi")}
     t4 = [r for r in csv.DictReader(open(TABLE4, encoding="utf-8")) if r["stem"]]
 

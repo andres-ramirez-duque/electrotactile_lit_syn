@@ -79,7 +79,7 @@ def seed_from_synthesis():
     that avoids every .bib key, and in_bib=False so they can be reviewed (out/TODO_review_not_in_bib.csv).
     """
     import match_library as ml
-    bib = ml.parse_bib((ml.REFS / "references.bib").read_text(encoding="utf-8"))
+    bib = ml.parse_bib(ml.BIB.read_text(encoding="utf-8"))
     keys = ml.assign_citekeys(bib)
     t4 = list(csv.DictReader(open(SYNTHESIS / "tables" / "table4_corpus_classification.csv", encoding="utf-8")))
     t1 = list(csv.DictReader(open(SYNTHESIS / "tables" / "table1_stimulation_parameters.csv", encoding="utf-8")))
@@ -134,7 +134,7 @@ def backfill_venues():
     """Venue type, canonical name and grouping key for every paper; also takes a missing DOI from the .bib."""
     import match_library as ml
     import venues
-    bib = ml.parse_bib((ml.REFS / "references.bib").read_text(encoding="utf-8"))
+    bib = ml.parse_bib(ml.BIB.read_text(encoding="utf-8"))
     keys = ml.assign_citekeys(bib)
     by_key = {keys[e["key"]]: e for e in bib if e["key"] in keys}
     papers = read("papers.csv")

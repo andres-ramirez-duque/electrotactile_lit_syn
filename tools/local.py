@@ -16,3 +16,6 @@ SHARED_FOLDER = Path(_cfg["shared_folder"])        # OneDrive/SharePoint-synced 
 SHAREPOINT_FOLDER_URL = _cfg["sharepoint_folder_url"].rstrip("/") + "/"
 ZOTERO_GROUP = int(_cfg["zotero_group_id"])
 ZOTERO_KEY_FILE = Path(_cfg["zotero_key_file"])
+# Since 2026-10-06 the .bib is a Better BibTeX export of the Zotero group, so its keys are the citation keys.
+BIB_FILE = Path(_cfg.get("bib_file") or LAB_ROOT / "References" / "references.bib")
+BIB_KEYS_FINAL = bool(_cfg.get("bib_keys_final", False))

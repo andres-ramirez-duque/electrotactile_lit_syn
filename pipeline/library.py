@@ -21,7 +21,7 @@ def zotero_key_for(citekey, state):
     """Zotero item key for a citekey: migrated items are keyed by .bib key, pipeline items by citekey."""
     if citekey in state["items"]:
         return state["items"][citekey]
-    bib = ml.parse_bib((ml.REFS / "references.bib").read_text(encoding="utf-8"))
+    bib = ml.parse_bib(ml.BIB.read_text(encoding="utf-8"))
     inv = {ck: bk for bk, ck in ml.assign_citekeys(bib).items()}
     return state["items"].get(inv.get(citekey, ""))
 

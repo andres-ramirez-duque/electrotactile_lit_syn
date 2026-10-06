@@ -3,5 +3,7 @@
  "shared_folder": "C:/path/to/OneDrive-synced shared PDF folder",
  "sharepoint_folder_url": "https://<tenant>.sharepoint.com/sites/<site>/Shared Documents/<folder>/",
  "zotero_group_id": 0,
- "zotero_key_file": "C:/path/to/zotero.env (one line: ZOTERO_API_KEY=...)"
+ "zotero_key_file": "C:/path/to/zotero.env (one line: ZOTERO_API_KEY=...)",
+ "bib_file": "C:/path/to/Better BibTeX export of the Zotero group (.bib)",
+ "bib_keys_final": true
 }

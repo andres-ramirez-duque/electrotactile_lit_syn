@@ -134,7 +134,7 @@ def main():
     ap.add_argument("--apply", action="store_true", help="write to Zotero (default: dry run)")
     a = ap.parse_args()
 
-    bib = [e for e in ml.parse_bib((ml.REFS / "references.bib").read_text(encoding="utf-8")) if e.get("title")]
+    bib = [e for e in ml.parse_bib(ml.BIB.read_text(encoding="utf-8")) if e.get("title")]
     match = {r["bib_key"]: r for r in csv.DictReader(open(HERE / "out" / "library_match.csv", encoding="utf-8")) if r["status"] == "OK"}
     files = {}
     for r in csv.DictReader(open(HERE / "out" / "files_manifest.csv", encoding="utf-8")):

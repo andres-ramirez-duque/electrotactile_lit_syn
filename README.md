@@ -5,7 +5,8 @@ Shared reference library and parameter-synthesis pipeline for the BodyElectric l
 ## Where things live
 | What | Where |
 |---|---|
-| Source PDFs + `references.bib` (read-only to this project) | `BodyElectric_cl_fs/References` |
+| Source PDFs (read-only to this project) | `BodyElectric_cl_fs/References` |
+| Reference list: Better BibTeX auto-export of the Zotero group (Zotero is the source of truth) | `References/BodyElectric.bib` |
 | Renamed PDFs, shared with the group (OneDrive/SharePoint sync) | `University of Glasgow/BodyElectric - References` |
 | Reference metadata, collections, notes | Zotero group (id in `local.json`), no file storage used |
 | Prior synthesis (tables 1–4, figures, write-up) | `BodyElectric_cl_fs/Literature synthesis and design principles` |
@@ -30,6 +31,8 @@ The Zotero API key is read from `zotero.env` and is never committed or printed.
   (tiers D1–D5 in `design_principles_synthesis.md`); that standard is the lab's call.
 
 ## Citation keys
+Since 2026-10-06 keys are set in Zotero and exported by Better BibTeX; the rules below are how they were first made
+and how the pipeline names a new paper.
 `AuthorYear` plus `a`, `b`, ... (`Kajimoto2002`, `Kajimoto2002b`), ASCII-folded (`Pena2021`), organisations
 by initials (`IEC2023`). A letter already chosen in the curated .bib key is kept; otherwise letters follow .bib
 order. The key is the PDF file name and is set in each Zotero item's Citation Key field (not Extra: the app ignores that). After any change to the
@@ -54,7 +57,9 @@ Design: `docs/architecture.md`. Run with `.venv/Scripts/python -m pipeline <comm
 - Done 2026-10-05: 12 hand-downloaded PDFs linked. Dropped Miao2017, Esram2007, Bhadra2005 (.bib; Zotero trash);
   Felizardo2016 and vanRaan2004 stay in .bib/Zotero but never on the site (`data/excluded.csv`, scope site_only;
   Zotero tag `not-on-site`). Still without a PDF: IEC2023 (standard).
-- A regenerated curated .bib is coming; rerun `match_library.py` + `rekey.py` against it. Give Kajimoto1999 a booktitle.
+- Done 2026-10-06: Zotero is the source of truth; `BodyElectric.bib` is its Better BibTeX export and the tools take
+  its keys as final (`bib_keys_final` in local.json). The old hand-kept `references.bib` is no longer read.
+  Kajimoto1999 still needs a venue (edit it in Zotero).
 - Done 2026-10-06: the 20 never-extracted .bib papers went through the pipeline (manual backend), reviewed and
   approved: 18 committed, Cunningham2025 and Ke2015 site_only. Only IEC2023 remains unclassified (no PDF).
 - Choose the language-model backend (GitHub Models/Copilot, an open model, or the Claude API).

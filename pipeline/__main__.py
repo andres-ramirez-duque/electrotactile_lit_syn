@@ -47,7 +47,7 @@ def save(d, st):
 
 
 def taken_keys():
-    bib = ml.parse_bib((ml.REFS / "references.bib").read_text(encoding="utf-8"))
+    bib = ml.parse_bib(ml.BIB.read_text(encoding="utf-8"))
     keys = set(ml.assign_citekeys(bib).values()) | {p["citekey"] for p in dataset.read("papers.csv")}
     return keys | {p.name for p in WORK.glob("*") if p.is_dir()}
 
@@ -72,7 +72,7 @@ def cmd_add(a):
 
     # a paper already in the dataset or the .bib keeps its key (re-extraction replaces, never duplicates)
     existing = {ml.norm_doi(p["doi"]): p["citekey"] for p in dataset.read("papers.csv") if p["doi"]}
-    bib = ml.parse_bib((ml.REFS / "references.bib").read_text(encoding="utf-8"))
+    bib = ml.parse_bib(ml.BIB.read_text(encoding="utf-8"))
     bib_keys = ml.assign_citekeys(bib)
     in_bib = {ml.norm_doi(e["doi"]): bib_keys[e["key"]] for e in bib if e.get("doi") and e["key"] in bib_keys}
     existing.update(in_bib)
