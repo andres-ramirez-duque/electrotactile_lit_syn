@@ -1,6 +1,8 @@
 citekey,record_type,tier,dose_group,n_participants,body_site,waveform_polarity,current_mA_min,current_mA_max,pulse_width_us,pulse_rate_Hz,area_mm2,area_source,J_peak_mA_cm2,Q_uC,D_uC_cm2,Javg_mA_cm2,frac_shannon_k15,density_band,compliance_V,pulse_width_us_min,pulse_width_us_max,pulse_rate_Hz_min,pulse_rate_Hz_max,bandwidth_or_carrier_Hz,n_channels,output_impedance_Mohm,load_tested,impedance_reported,measurement_freq_Hz,electrode_material,interface_contribution
 Adachi2026,delivered,D1n_nondisplay_dose,tactile_display,12.0,right hand (thenar eminence/palm for kinesthetic; presumably palm/thumb region for tactile),mixed_or_multiple,2.93,5.46,100.0,100.0,3.141592653589793,from_diameter,173.7971978563497,0.546,17.379719785634972,1.7379719785634968,0.3000788679148252,II_display_scale,,,,,,,,,,,,,False
+Aiello1998,delivered,D1_full_dose,tactile_display,3,abdomen,not_reported,,,,,3.141592653589793,from_diameter,,,,,,,,,,,,,,,,,,,
 Alotaibi2022,delivered,D1_full_dose,tactile_display,,palm (thenar/hypothenar eminence and distal palmar region),biphasic_symmetric,,20.0,200.0,20.0,,unknown,,4.0,,,,,,,,,,,,,,,,,False
+ArendtNielsen1994,delivered,D1n_nondisplay_dose,fibre_selective_on_skin,8,sural nerve (lateral ankle),monophasic,,,1000,200,,unknown,,,,,,,,,,,,,,,,,,,
 Bao2023,envelope,D2i_ac_instrument_envelope,tactile_display,,,,,,,,,,,,,,,,,,,390000.0,,390000.0,,,True,,,,False
 Bao2023,interface,D2_instrument_envelope,tactile_display,,,,,,,,,,,,,,,,,,,,,,,,,"Load impedance |Z| measured during electrocuting, values shown per test scenario in Fig. 14 (e.g., mean load impedance over 1000 samples specified per trace); not a single numeric skin-electrode impedance",390000.0,electrosurgery blade electrode,False
 Boljanic2022,delivered,D1_full_dose,tactile_display,10.0,thigh,biphasic_symmetric,0.1,9.0,300.0,30.0,78.53981633974483,from_diameter,11.459155902616464,2.7,3.4377467707849396,0.10313240312354817,0.2935199649933684,I_low_density_large_area,,,,,,,,,,,,,False
@@ -10,15 +12,23 @@ Collu2023,envelope,D2_instrument_envelope,tactile_display,,,,,25.0,,,,,,,,,,,90.
 Collu2023,interface,D2_instrument_envelope,tactile_display,,,,,,,,,,,,,,,,,,,,,,,,,"Skin-like RC circuit: Ces = 47 nF, Res = 22 kΩ, Rs = 470Ω; also tested on resistive loads up to 10 kΩ",,,False
 Cornman2017,envelope,D2_instrument_envelope,tactile_display,,,,,15.0,,,,,,,,,,,150.0,,,,,,,,True,,,,False
 Cornman2017,interface,D2_instrument_envelope,tactile_display,,,,,,,,,,,,,,,,,,,,,,,,,skin impedances typically range from 10 kΩ to 100 kΩ on the forearm,,,False
+Daneffel2025,delivered,D1_full_dose,fibre_selective_on_skin,24,volar forearm (intracutaneous),mixed_or_multiple,,3.6,25000,2,,unknown,,90.0,,,,,,,,,,,,,,,,,
+Daneffel2025,delivered,D1_full_dose,fibre_selective_on_skin,24,volar forearm (intracutaneous),mixed_or_multiple,,9.2,500,2,,unknown,,4.6,,,,,,,,,,,,,,,,,
 DiCampliSanVito2026,delivered,D1_full_dose,tactile_display,45.0,"palm (open hand and while holding a smartphone), left and right hands",not_reported,,,500.0,20.0,,unknown,,,,,,,,,,,,,,,,,,,False
+Duente2024,delivered,D1_full_dose,tactile_display,15,dorsal wrist (under a smartwatch),biphasic_symmetric,,6.53,50,85,,unknown,,0.3265,,,,,,,,,,,,,,,,,
 Gregory2009,delivered,D1_full_dose,tactile_display,10.0,fingertip (index),not_reported,,5.0,,60.0,0.454,reported,1101.3215859030838,,,,,,,,,,,,,,,,,,False
 Gregory2009,interface,D1_full_dose,tactile_display,,,,,,,,0.454,,,,,,,,,,,,,,,,,"Dry finger: Rp 194KΩ-616KΩ, Rs 19KΩ-69.8KΩ, Cp 45.4pF-165pF; damp finger: Rp up to 19.8KΩ Rs, Cp 160pF-845pF (Cole-Cole RC model)",,custom-manufactured PCB electrode array,True
+Gunnarsson2023,delivered,D1n_nondisplay_dose,tactile_display,1.0,lower limbs (stimulation trousers),monophasic,,,30.0,20.0,6400,reported,,,,,,,,,,,,,,,,,,,
+Gunnarsson2023,interface,D1n_nondisplay_dose,,,,,,,,,6400,,,,,,,,,,,,,,,,,"skin-electrode impedance spectra 1 Hz-50 kHz on a worn garment, fitted to an equivalent-circuit model; low-frequency value compared across textile types and conductive rubber",,flat-knitted intarsia silver-plated textile electrodes; warp-knitted Shieldex Silitex; conductive rubber (Mollii suit) reference,True
 GuzmanMiranda2024,envelope,D2_instrument_envelope,tactile_display,,,,,3.0,,,,,,,,,,,15.0,15.0,,,,,2.0,,True,,,,False
 GuzmanMiranda2024,interface,D2_instrument_envelope,tactile_display,,,,,,,,,,,,,,,,,,,,,,,,,Electrodes 10-15 kΩ (target); microwire electrodes 100-500 kΩ; larger electrodes 10-50 kΩ,1000.0,"silver wire (custom, insulated with nail polish); silver rod return electrode",False
 Hugosdottir2019,delivered,D1_full_dose,fibre_selective_on_skin,25,volar forearm,monophasic,,,50000,0.5,0.031415926535897934,from_diameter,,,,,,,,,,,,,,,,,,,
 Hummel2016,delivered,D1_full_dose,tactile_display,19.0,fingertip,mixed_or_multiple,,,100.0,27.78,3.125,reported,,,,,,,,,,,,,,,,,,,False
 Hummel2016,envelope,D2_instrument_envelope,tactile_display,,,,,10.0,,,,,,,,,,,200.0,100.0,100.0,5.56,27.78,,8.0,,False,,,,False
 Hummel2016,interface,D1_full_dose,tactile_display,,,,,,,,3.125,,,,,,,,,,,,,,,,,"calculated via Ohm's law from voltage and current sense (skin resistance derived, not a fixed numeric value reported)",,gold-coated PCB electrodes,False
+Isakovic2022,delivered,D1_full_dose,tactile_display,10,index fingertip,biphasic_symmetric,,,400,30,7.0,reported,,,,,,,,,,,,,,,,,,,
+Jiang2024,delivered,D1_full_dose,tactile_display,12,fingertip edge,sinusoidal_or_ac,,,,40,3.141592653589793,from_diameter,,,,,,,,,,,,,,,,,,,
+Jiang2025,delivered,D1_full_dose,tactile_display,12,fingertip edge,no_delivery,,,,,,unknown,,,,,,,,,,,,,,,,,,,
 Jorgovanovic2026,envelope,D2_instrument_envelope,tactile_display,,,,,3.0,,,,,,,,,,,150.0,,,,,10000.0,16.0,,True,,,,False
 Jorgovanovic2026,interface,D2_instrument_envelope,tactile_display,,,,,,,,,,,,,,,,,,,,,,,,,"Impedance magnitude (RzMag) and phase measured at 100 Hz, 1 kHz, 10 kHz on artificial sweat/NaCl solutions and a 470 kΩ test resistor; not electrode-skin impedance for stimulation",1000.0,screen-printed carbon electrodes (Kapsense) for electrochemical sensing; stimulation electrodes not specified,False
 Kaczmarek1991,interface,D5_aggregate_envelope,tactile_display,,,,,,,,,,,,,,,,,,,,,,,,,"R=8 kohm (0.1 Mohm·mm2), C=1.25 nF (0.1 nF/mm2) for 12-mm2 electrode; literature range R=0.25-40 Mohm·mm2, C=0.031-0.4 nF/mm2; Gibson: R drops 32 to 3 Mohm·mm2 as current increases 0.1 to 5 mA for 330-mm2 electrode, C=40 pF/mm2",60.0,"metal (silver/stainless steel), coaxial electrodes, conductive gel/adhesive discussed",False
@@ -44,9 +54,12 @@ Kajimoto2024,delivered,D1_full_dose,tactile_display,8.0,"fingertip (index finger
 Kajimoto2024,envelope,D2_instrument_envelope,tactile_display,,,,,,,,,,,,,,,,300.0,,,,,,64.0,,False,,,,False
 Kajimoto2026,delivered,D1_full_dose,tactile_display,12.0,index finger (left hand),monophasic,,,80.0,90.0,,unknown,,,,,,,,,,,,,,,,,,,False
 Kajimoto2026,interface,D1_full_dose,tactile_display,,,,,,,,,,,,,,,,,,,,,,,,,Voltage monitored via oscilloscope under current control; qualitative note that lower monitored voltage correlated with lower skin impedance and reduced vibration perception; no quantitative values given,,"copper line electrodes (18 µm copper layer), bare (uninsulated)",True
+Kato2018,delivered,D1_full_dose,tactile_display,,index fingertip,no_delivery,,,,640,0.7853981633974483,from_diameter,,,,,,,,,,,,,,,,,,,
 Keller2008,delivered,D1n_nondisplay_dose,tactile_display,10.0,forearm,not_reported,,,,,,unknown,,,,,,,,,,,,,,,,,,,False
 Keller2008,interface,D1n_nondisplay_dose,tactile_display,,,,,,,,,,,,,,,,,,,,,,,,,"Skin resistivities characterized via equivalent network model (Rs, Cs, Rc); electrode gel resistivities: Hydrogel 200Ωm, Hotmelt 400Ωm, Carbon Rubber 5Ωm; pore resistivity 1.4 Ωm; gel resistivity recommendations ~1500-4500 Ωm depending on gap size",,"Hydrogel (200 Ωm), Hotmelt (400 Ωm), Carbon Rubber (5 Ωm); also mentions carbon-nanotube-blended biocompatible hotmelt skin interface material",True
+Khurshid2026,delivered,D1_full_dose,tactile_display,12,upper arms and shoulders,no_delivery,,,200,,1800,reported,,,,,,,,,,,,,,,,,,,
 Komurasaki2021,delivered,D1_full_dose,tactile_display,,fingerpad,monophasic,2.16,5.9,200.0,320.0,13.5,reported,43.7037037037037,1.18,8.74074074074074,2.797037037037037,0.326159660297663,I_low_density_large_area,,,,,,,,,,,,,False
+Kong2026,delivered,D1_full_dose,fibre_selective_on_skin,21,volar forearm (non-dominant),sinusoidal_or_ac,,,,5,,unknown,,,,,,,,,,,,,,,,,,,
 Lailert2026,delivered,D1_full_dose,tactile_display,6.0,forearm and leg,not_reported,,,,,,unknown,,,,,,,,,,,,,,,,,,,False
 Lailert2026,envelope,D2_instrument_envelope,tactile_display,,,,,3.8,,,,,,,,,,,500.0,0.0,,1.0,1500.0,,8.0,1.01,True,,,,False
 Lailert2026,interface,D1_full_dose,tactile_display,,,,,,,,,,,,,,,,,,,,,,,,,test loads 5.7 kΩ to 1.01 MΩ used for bench characterisation; 10 kΩ and 1 MΩ loads in pulse shape test,,,False
@@ -57,6 +70,7 @@ Lin2022,envelope,D2_instrument_envelope,tactile_display,,,,,,,,,,,,,,,,28.0,,,1.
 Lin2022,interface,D1_full_dose,tactile_display,,,,,,,,3.141592653589793,,,,,,,,,,,,,,,,,Skin impedance decreases with increasing AC frequency from 20 Hz to 10 kHz (fig. S1); modeled as parallel R-C per skin layer,10000.0,Silver-sputtered solder half-spherical copper pad electrodes on flexible printed circuit,False
 Lin2024,delivered,D1_full_dose,tactile_display,,fingertip,not_reported,0.5,3.0,200.0,,,unknown,,0.6,,,,,,,,,,,,,,,,,False
 Lin2024,interface,D1_full_dose,tactile_display,,,,,,,,,,,,,,,,,,,,,,,,,Yarn resistance less than 500 Ω/m; electrode spacing as close as 1mm (2mm used in experiments),,"Silver-coated polyamide 6.6 conductive yarn, woven linear textile electrodes",True
+Lin2025,delivered,D1_full_dose,tactile_display,12,index fingertip,not_reported,,,100,100,0.7853981633974483,from_diameter,,,,,,,,,,,,,,,,,,,
 Liu2025,delivered,D1n_nondisplay_dose,tactile_display,13.0,"mastoid (bilateral, behind ears)",biphasic_symmetric,1.6,1.6,,,,unknown,,,,,,,,,,,,,,,,,,,False
 Liu2025,envelope,D2_instrument_envelope,tactile_display,,,,,4.0,,,,,,,,,,,24.6,,,,640.0,,2.0,,True,,,,False
 Liu2025,interface,D1n_nondisplay_dose,tactile_display,,,,,,,,,,,,,,,,,,,,,,,,,"test loads of 1481 Ω, 2663 Ω, 3850 Ω; design target range 0–5 kΩ",,ECG electrode (MSGST-37) with Nuprep skin prep gel,False
@@ -75,11 +89,14 @@ Mereu2024,delivered,D1n_nondisplay_dose,tactile_display,7.0,"forearm/hand (media
 Mereu2024,envelope,D2_instrument_envelope,tactile_display,,,,,5.0,,,,,,,,,,,14.0,100.0,500.0,50.0,600.0,,30.0,,True,,,,False
 Mohsen2021,interface,D5_aggregate_envelope,tactile_display,,,,,,,,,,,,,,,,,,,,,,,,,"Fractional-order circuit model parameters (Cole, Hayden, Double-Shell, onion dehydration, etc.) fit to bio-impedance of fruits/vegetables (carrot, tomato, zucchini, cucumber) over 100Hz-500kHz",500000.0,Ag/AgCl electrodes,True
 Morcelles2017,envelope,D2i_ac_instrument_envelope,tactile_display,,,,,1.0,,,,,,,,,,,5.0,,,100.0,,10000000.0,1.0,,True,,,,False
+Morch2011,delivered,D1_full_dose,fibre_selective_on_skin,14.0,volar forearm,monophasic,,,1000.0,,0.031415926535897934,from_diameter,,,,,,,,,,,,,,,,,,,
+Morch2011,interface,D1_full_dose,,,,,,,,,,,,,,,,,,,,,,,,,,"electrode-skin impedance vs diameter (0.2-20 mm), measured 1 Hz-10 kHz with a 1 uA stochastic signal; decreases with electrode size",1.0,"11 circular cathodes, 0.2-20 mm diameter",True
 Nagi2019,delivered,D1n_nondisplay_dose,fibre_selective_on_skin,103.0,peroneal or radial nerve (intraneural),monophasic,0.0063,0.0063,200.0,30.0,,unknown,,0.00126,,,,,,,,,,,,,,,,,False
 Noccaro2024,delivered,D1_full_dose,tactile_display,8.0,thigh,not_reported,,,,,,unknown,,,,,,,,,,,,,,,,,,,False
 Nwokoye2024,envelope,D2i_ac_instrument_envelope,tactile_display,,,,,2.0,,,,,,,,,,,15.0,,,1000.0,,3000000.0,,1.0,True,,,,False
 Nwokoye2024,interface,D2_instrument_envelope,tactile_display,,,,,,,,,,,,,,,,,,,,,,,,,"Output impedance <1 kΩ @1 MHz; 200 kΩ @100 kHz; 1 MΩ @1 kHz (device output impedance, not skin-electrode)",1000000.0,,False
 Pawling2017,delivered,D1_full_dose,fibre_selective_on_skin,,volar forearm and palm,no_delivery,,,,,,unknown,,,,,,,,,,,,,,,,,,,False
+Pena2021,interface,D4_no_dose_obligation,,,,,,,,,,,,,,,,,,,,,,,,,,"cuff impedance at 10 kHz: tripolar 0.82-1.30 kOhm (median 0.92), bipolar 2.00-3.20 kOhm (median 2.70)",10000,Pt-Ir 90-10 ribbon contacts (nerve cuff),False
 Perera2025,envelope,D2_instrument_envelope,tactile_display,,,,,10.0,,,,,,,,,,,270.0,1.0,,1.0,250.0,,,,False,,,,False
 Poletto1999,delivered,D1_full_dose,tactile_display,3.0,fingertip (volar tip of third finger),monophasic,0.5,12.0,50.0,,50.26548245743669,from_diameter,23.8732414637843,0.6,1.193662073189215,,0.022648145447019163,I_low_density_large_area,,,,,,,,,,,,,False
 Poletto1999,envelope,D2_instrument_envelope,tactile_display,,,,,25.0,,,,,,,,,,,800.0,1.0,,,,,1.0,,True,,,,False
@@ -92,11 +109,14 @@ Schaning2008,envelope,D2_instrument_envelope,tactile_display,,,,,20.0,,,,,,,,,,,
 Schaning2008,interface,D2_instrument_envelope,tactile_display,,,,,,,,,,,,,,,,,,,,,,,,,"resistive component of fingertip impedance reported as high as 320 kΩ (cited from literature); bench tests used 1, 10, 20, 30, 50, 70, 100, 200 kΩ resistive loads and a ""well-hydrated fingertip electrode"" load",,,False
 Schneider2023,delivered,D1_full_dose,fibre_selective_on_skin,23.0,volar forearm and dorsum of foot,mixed_or_multiple,0.125,1.4,25000.0,40.0,0.1256637061435917,from_diameter,1114.0846016432674,35.0,27852.115041081688,1114.0846016432674,30826.642413998317,III_point_contact,,,,,,,,,,,,,False
 Stanke2020,delivered,D1_full_dose,tactile_display,18.0,wrist and ring finger,biphasic_symmetric,,,50.0,100.0,1600.0,reported,,,,,,,,,,,,,,,,,,,False
+StephensFripp2018,delivered,D1_full_dose,tactile_display,1.0,forearm,biphasic_symmetric,,4.0,100.0,100.0,176.71458676442586,from_diameter,2.2635369684180673,0.4,0.22635369684180673,0.022635369684180666,0.0028631729552774854,I_low_density_large_area,,,,,,,,,,,,,
+StephensFripp2018,interface,D1_full_dose,,,,,,,,,,,,,,,,,,,,,,,,,,about 3.2 kOhm for the disposable electrode at 5 kHz; graphene and disposable concentric electrodes comparable over 1 kHz-1 MHz,5000.0,graphene ink (Gf-SEBS) spray-coated on 3D-printed NinjaFlex; concentric 15 mm inner / 20-35 mm outer,True
 Strbac2019,delivered,D1_full_dose,tactile_display,1.0,forearm (wrist/finger flexor muscles),biphasic_symmetric,3.0,3.0,250.0,10.0,,unknown,,0.75,,,,,,,,,,,,,,,,,False
 Strbac2019,envelope,D2_instrument_envelope,tactile_display,,,,,5.0,,,,,,,,,,,50.0,50.0,500.0,1.0,100.0,,16.0,,False,,,,False
 Strong1970,delivered,D1_full_dose,tactile_display,3.0,,biphasic_symmetric,,0.05,600.0,200.0,2.482866647577739,from_diameter,2.0138012667244745,0.03,1.2082807600346848,0.2416561520069369,0.0011462757764006863,I_low_density_large_area,,,,,,,,,,,,,False
 Strong1970,interface,D1_full_dose,tactile_display,,,,,,,,2.482866647577739,,,,,,,,,,,,,,,,,5000-10 000 ohms with both electrodes wet; source output impedance 200 000 ohms,,"metal point electrodes (70 mil diameter), insulating plastic substrate",False
 Szeto1985,delivered,D1_full_dose,tactile_display,12.0,"left forearm, ~4 cm below elbow joint",monophasic,3.0,6.0,200.0,100.0,,unknown,,1.2,,,,,,,,,,,,,,,,,False
+Tanaka2021,delivered,D1_full_dose,fibre_selective_on_skin,14,dorsum of the left hand (intraepidermal needle),monophasic,,,1600,,,unknown,,,,,,,,,,,,,,,,,,,
 Tigerholm2020,delivered,D1_full_dose,fibre_selective_on_skin,19.0,forearm skin (pin and patch electrodes),not_reported,,,,,8.8,reported,,,,,,,,,,,,,,,,,,,False
 Trinitatova2022,delivered,D1_full_dose,tactile_display,12.0,hand/fingers,not_reported,,,,,,unknown,,,,,,,,,,,,,,,,,,,False
 Trout2023,delivered,D1n_nondisplay_dose,tactile_display,14.0,wrist (transcutaneous median nerve) and palm/hand (electrocutaneous); forearm and upper arm nerves for motor stimulation,biphasic_symmetric,1.2,3.0,100.0,200.0,716.0,reported,0.41899441340782123,0.3,0.04189944134078212,0.008379888268156424,0.0003974930019764722,I_low_density_large_area,,,,,,,,,,,,,False

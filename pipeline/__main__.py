@@ -152,6 +152,11 @@ def draft(d, st):
     paper["venue_type"], paper["venue"], paper["venue_key"] = (venues.from_crossref(msg) if msg
                                                               else venues.from_bib(e, e.get("journal", "")))
     recs = kernel.etd_split_records([x]).to_dict("records")
+    # comparison studies deliver more than one configuration (Daneffel2025: half-sine vs rectangular); the
+    # schema holds one, so the others ride in "extra_delivered" as overrides of the first delivered record
+    base = next((r for r in recs if r["record_type"] == "delivered"), None)
+    for extra in x.get("extra_delivered", []) if base else []:
+        recs.append({**base, **extra})
     records = [dataset.derive({**{k: ("" if v != v else v) for k, v in r.items()}, "citekey": st["citekey"]})
                for r in recs]
     return paper, records

@@ -55,7 +55,8 @@ Design: `docs/architecture.md`. Run with `.venv/Scripts/python -m pipeline <comm
   Felizardo2016 and vanRaan2004 stay in .bib/Zotero but never on the site (`data/excluded.csv`, scope site_only;
   Zotero tag `not-on-site`). Still without a PDF: IEC2023 (standard).
 - A regenerated curated .bib is coming; rerun `match_library.py` + `rekey.py` against it. Give Kajimoto1999 a booktitle.
-- 21 Zotero items tagged `needs-classification`: .bib papers never extracted; 20 have PDFs and can go through the pipeline.
+- Done 2026-10-06: the 20 never-extracted .bib papers went through the pipeline (manual backend), reviewed and
+  approved: 18 committed, Cunningham2025 and Ke2015 site_only. Only IEC2023 remains unclassified (no PDF).
 - Choose the language-model backend (GitHub Models/Copilot, an open model, or the Claude API).
 - Site: chart labels are small at phone width; the checker's PDF upload is untested on a real PDF.
 
