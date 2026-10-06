@@ -10,20 +10,30 @@ permissions:
   contents: read
   pages: write
   id-token: write
+# Queue rather than cancel: cancelling a deployment mid-flight can leave Pages half-updated (GitHub's own
+# Pages starter workflow does the same).
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 jobs:
   deploy:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url || steps.deployment_retry.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site
+      # GitHub's token service occasionally times out (503 "Failed to get ID Token", 2026-10-06); one delayed
+      # retry turns that transient failure into a success instead of a failure email and a manual re-run.
       - id: deployment
+        uses: actions/deploy-pages@v4
+        continue-on-error: true
+      - if: steps.deployment.outcome == 'failure'
+        run: sleep 60
+      - id: deployment_retry
+        if: steps.deployment.outcome == 'failure'
         uses: actions/deploy-pages@v4
