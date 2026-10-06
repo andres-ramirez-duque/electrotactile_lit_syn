@@ -48,3 +48,29 @@ def new_citekey(entry, taken):
     """AuthorYear plus the first free letter, against every key already in use (dataset, .bib, Zotero)."""
     base = ml.citekey(entry)
     return next(base + s for s in [""] + list("abcdefghijklmnopqrstuvwxyz") if base + s not in taken)
+
+
+def datacite(doi):
+    """DataCite record (Zenodo, arXiv, figshare, ...) as the same entry shape as to_entry()."""
+    url = "https://api.datacite.org/dois/" + urllib.parse.quote(doi)
+    a = json.load(urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": "BodyElectric-library-sync/1.0"}),
+                                         timeout=30))["data"]["attributes"]
+    kind = (a.get("types") or {}).get("resourceTypeGeneral", "")
+    names = []
+    for c in a.get("creators", []):
+        names.append(f"{c['familyName']}, {c.get('givenName', '')}".strip(", ") if c.get("familyName") else c.get("name", ""))
+    e = {"entrytype": "misc" if kind in ("Text", "Preprint", "") else kind.lower(), "author": " and ".join(names),
+         "title": (a.get("titles") or [{}])[0].get("title", ""), "year": str(a.get("publicationYear") or ""),
+         "doi": doi.lower(), "url": a.get("url", ""), "publisher": a.get("publisher", "")}
+    return {k: v for k, v in e.items() if v}
+
+
+def metadata(doi):
+    """Crossref first (journals, proceedings); DataCite for DOIs Crossref doesn't hold (Zenodo, arXiv)."""
+    import urllib.error
+    try:
+        return to_entry(crossref(doi))
+    except urllib.error.HTTPError as err:
+        if err.code != 404:
+            raise
+        return datacite(doi)

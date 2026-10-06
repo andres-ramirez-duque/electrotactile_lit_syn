@@ -36,7 +36,7 @@ SERIES = [
 ]
 # Crossref often names only the publisher for preprints (TechRxiv is "IEEE"); the DOI prefix names the server
 PREPRINT_PREFIXES = {"10.36227/techrxiv": "TechRxiv", "10.1101/": "bioRxiv", "10.48550/arxiv": "arXiv",
-                     "10.21203/rs": "Research Square", "10.2139/ssrn": "SSRN", "10.31219/osf": "OSF Preprints"}
+                     "10.21203/rs": "Research Square", "10.5281/zenodo": "Zenodo", "10.2139/ssrn": "SSRN", "10.31219/osf": "OSF Preprints"}
 TYPES = {"journal-article": "journal", "proceedings-article": "conference", "book-chapter": "book",
          "book": "book", "monograph": "book", "posted-content": "preprint", "dissertation": "thesis",
          "report": "other", "standard": "other"}
@@ -95,8 +95,10 @@ def from_crossref(m):
 def from_bib(e, hint=""):
     """Fallback for papers without a DOI: the .bib entry, else the free-text venue from the 2026-09-17 tables."""
     t = (e or {}).get("entrytype", "")
-    if "arxiv" in ((e or {}).get("doi", "") + (e or {}).get("publisher", "")).lower():
-        return "preprint", "arXiv", "preprint:arxiv"
+    doi = (e or {}).get("doi", "").lower()
+    server = next((s for pre, s in PREPRINT_PREFIXES.items() if doi.startswith(pre)), None)
+    if server:
+        return "preprint", server, "preprint:" + server.lower()
     if t == "article" and re.search(r"Universit|Graduate School|Department|Institute of", e.get("journal", "")):
         return "other", "Technical report", "other:report"  # an institution in the journal field: a report
     if t == "article" and e.get("journal"):

@@ -68,7 +68,7 @@ def cmd_add(a):
         x = excluded[ml.norm_doi(doi)]
         raise SystemExit(f"{x['citekey']} is excluded ({x['scope']}, {x['decided']}): {x['reason']}. "
                          f"Remove it from data/excluded.csv to add it after all.")
-    entry = resolve.to_entry(resolve.crossref(doi))
+    entry = resolve.metadata(doi)
 
     # a paper already in the dataset or the .bib keeps its key (re-extraction replaces, never duplicates)
     existing = {ml.norm_doi(p["doi"]): p["citekey"] for p in dataset.read("papers.csv") if p["doi"]}

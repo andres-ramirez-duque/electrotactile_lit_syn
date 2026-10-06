@@ -15,6 +15,7 @@ Cornman2017,interface,D2_instrument_envelope,tactile_display,,,,,,,,,,,,,,,,,,,,
 Daneffel2025,delivered,D1_full_dose,fibre_selective_on_skin,24,volar forearm (intracutaneous),mixed_or_multiple,,3.6,25000,2,,unknown,,90.0,,,,,,,,,,,,,,,,,
 Daneffel2025,delivered,D1_full_dose,fibre_selective_on_skin,24,volar forearm (intracutaneous),mixed_or_multiple,,9.2,500,2,,unknown,,4.6,,,,,,,,,,,,,,,,,
 DiCampliSanVito2026,delivered,D1_full_dose,tactile_display,45.0,"palm (open hand and while holding a smartphone), left and right hands",not_reported,,,500.0,20.0,,unknown,,,,,,,,,,,,,,,,,,,False
+DiCampliSanVito2026a,delivered,D1_full_dose,tactile_display,16,palm (non-dominant),not_reported,,,2200,44,,unknown,,,,,,,,,,,,,,,,,,,
 Duente2024,delivered,D1_full_dose,tactile_display,15,dorsal wrist (under a smartwatch),biphasic_symmetric,,6.53,50,85,,unknown,,0.3265,,,,,,,,,,,,,,,,,
 Gregory2009,delivered,D1_full_dose,tactile_display,10.0,fingertip (index),not_reported,,5.0,,60.0,0.454,reported,1101.3215859030838,,,,,,,,,,,,,,,,,,False
 Gregory2009,interface,D1_full_dose,tactile_display,,,,,,,,0.454,,,,,,,,,,,,,,,,,"Dry finger: Rp 194KΩ-616KΩ, Rs 19KΩ-69.8KΩ, Cp 45.4pF-165pF; damp finger: Rp up to 19.8KΩ Rs, Cp 160pF-845pF (Cole-Cole RC model)",,custom-manufactured PCB electrode array,True
@@ -28,7 +29,7 @@ Hummel2016,envelope,D2_instrument_envelope,tactile_display,,,,,10.0,,,,,,,,,,,20
 Hummel2016,interface,D1_full_dose,tactile_display,,,,,,,,3.125,,,,,,,,,,,,,,,,,"calculated via Ohm's law from voltage and current sense (skin resistance derived, not a fixed numeric value reported)",,gold-coated PCB electrodes,False
 Isakovic2022,delivered,D1_full_dose,tactile_display,10,index fingertip,biphasic_symmetric,,,400,30,7.0,reported,,,,,,,,,,,,,,,,,,,
 Jiang2024,delivered,D1_full_dose,tactile_display,12,fingertip edge,sinusoidal_or_ac,,,,40,3.141592653589793,from_diameter,,,,,,,,,,,,,,,,,,,
-Jiang2025,delivered,D1_full_dose,tactile_display,12,fingertip edge,no_delivery,,,,,,unknown,,,,,,,,,,,,,,,,,,,
+Jiang2025,delivered,D1_full_dose,tactile_display,12,fingertip edge,not_reported,,,,,,unknown,,,,,,,,,,,,,,,,,,,
 Jorgovanovic2026,envelope,D2_instrument_envelope,tactile_display,,,,,3.0,,,,,,,,,,,150.0,,,,,10000.0,16.0,,True,,,,False
 Jorgovanovic2026,interface,D2_instrument_envelope,tactile_display,,,,,,,,,,,,,,,,,,,,,,,,,"Impedance magnitude (RzMag) and phase measured at 100 Hz, 1 kHz, 10 kHz on artificial sweat/NaCl solutions and a 470 kΩ test resistor; not electrode-skin impedance for stimulation",1000.0,screen-printed carbon electrodes (Kapsense) for electrochemical sensing; stimulation electrodes not specified,False
 Kaczmarek1991,interface,D5_aggregate_envelope,tactile_display,,,,,,,,,,,,,,,,,,,,,,,,,"R=8 kohm (0.1 Mohm·mm2), C=1.25 nF (0.1 nF/mm2) for 12-mm2 electrode; literature range R=0.25-40 Mohm·mm2, C=0.031-0.4 nF/mm2; Gibson: R drops 32 to 3 Mohm·mm2 as current increases 0.1 to 5 mA for 330-mm2 electrode, C=40 pF/mm2",60.0,"metal (silver/stainless steel), coaxial electrodes, conductive gel/adhesive discussed",False
@@ -54,10 +55,10 @@ Kajimoto2024,delivered,D1_full_dose,tactile_display,8.0,"fingertip (index finger
 Kajimoto2024,envelope,D2_instrument_envelope,tactile_display,,,,,,,,,,,,,,,,300.0,,,,,,64.0,,False,,,,False
 Kajimoto2026,delivered,D1_full_dose,tactile_display,12.0,index finger (left hand),monophasic,,,80.0,90.0,,unknown,,,,,,,,,,,,,,,,,,,False
 Kajimoto2026,interface,D1_full_dose,tactile_display,,,,,,,,,,,,,,,,,,,,,,,,,Voltage monitored via oscilloscope under current control; qualitative note that lower monitored voltage correlated with lower skin impedance and reduced vibration perception; no quantitative values given,,"copper line electrodes (18 µm copper layer), bare (uninsulated)",True
-Kato2018,delivered,D1_full_dose,tactile_display,,index fingertip,no_delivery,,,,640,0.7853981633974483,from_diameter,,,,,,,,,,,,,,,,,,,
+Kato2018,delivered,D1_full_dose,tactile_display,,index fingertip,not_reported,,,,640,0.7853981633974483,from_diameter,,,,,,,,,,,,,,,,,,,
 Keller2008,delivered,D1n_nondisplay_dose,tactile_display,10.0,forearm,not_reported,,,,,,unknown,,,,,,,,,,,,,,,,,,,False
 Keller2008,interface,D1n_nondisplay_dose,tactile_display,,,,,,,,,,,,,,,,,,,,,,,,,"Skin resistivities characterized via equivalent network model (Rs, Cs, Rc); electrode gel resistivities: Hydrogel 200Ωm, Hotmelt 400Ωm, Carbon Rubber 5Ωm; pore resistivity 1.4 Ωm; gel resistivity recommendations ~1500-4500 Ωm depending on gap size",,"Hydrogel (200 Ωm), Hotmelt (400 Ωm), Carbon Rubber (5 Ωm); also mentions carbon-nanotube-blended biocompatible hotmelt skin interface material",True
-Khurshid2026,delivered,D1_full_dose,tactile_display,12,upper arms and shoulders,no_delivery,,,200,,1800,reported,,,,,,,,,,,,,,,,,,,
+Khurshid2026,delivered,D1_full_dose,tactile_display,12,upper arms and shoulders,not_reported,,,200,,1800,reported,,,,,,,,,,,,,,,,,,,
 Komurasaki2021,delivered,D1_full_dose,tactile_display,,fingerpad,monophasic,2.16,5.9,200.0,320.0,13.5,reported,43.7037037037037,1.18,8.74074074074074,2.797037037037037,0.326159660297663,I_low_density_large_area,,,,,,,,,,,,,False
 Kong2026,delivered,D1_full_dose,fibre_selective_on_skin,21,volar forearm (non-dominant),sinusoidal_or_ac,,,,5,,unknown,,,,,,,,,,,,,,,,,,,
 Lailert2026,delivered,D1_full_dose,tactile_display,6.0,forearm and leg,not_reported,,,,,,unknown,,,,,,,,,,,,,,,,,,,False
