@@ -62,6 +62,9 @@ Design: `docs/architecture.md`. Run with `.venv/Scripts/python -m pipeline <comm
   Kajimoto1999 still needs a venue (edit it in Zotero).
 - Done 2026-10-06: the 20 never-extracted .bib papers went through the pipeline (manual backend), reviewed and
   approved: 18 committed, Cunningham2025 and Ke2015 site_only. Only IEC2023 remains unclassified (no PDF).
+- Done 2026-10-06: expansion screening (35 candidates): 2 already held, 13 dropped (`data/excluded.csv`), 17 committed.
+  Pending: Lim2024 on hold (reviewer to pick the experiment to record), Graczyk2024 awaiting approval,
+  Blau2024 awaiting a PDF (Science Robotics, via the library).
 - Choose the language-model backend (GitHub Models/Copilot, an open model, or the Claude API).
 - Site: chart labels are small at phone width; the checker's PDF upload is untested on a real PDF.
 
