@@ -6,7 +6,8 @@ Alotaibi2022,delivered,D1_full_dose,tactile_display,,palm (thenar/hypothenar emi
 ArendtNielsen1994,delivered,D1n_nondisplay_dose,fibre_selective_on_skin,8,sural nerve (lateral ankle),monophasic,,,1000,200,,unknown,,,,,,,,,,,,,,,,,,,
 Bao2023,envelope,D2i_ac_instrument_envelope,tactile_display,,,,,,,,,,,,,,,,,,,390000.0,,390000.0,,,True,,,,False
 Bao2023,interface,D2_instrument_envelope,tactile_display,,,,,,,,,,,,,,,,,,,,,,,,,"Load impedance |Z| measured during electrocuting, values shown per test scenario in Fig. 14 (e.g., mean load impedance over 1000 samples specified per trace); not a single numeric skin-electrode impedance",390000.0,electrosurgery blade electrode,False
-Blau2024,delivered,D1_full_dose,tactile_display,10,forearm,biphasic_symmetric,0.006,0.25,,100,509,reported,0.049115913555992145,,,,,,,,,,,,,,,,,,
+Blau2024,delivered,D1_full_dose,tactile_display,10.0,forearm,biphasic_symmetric,0.006,0.25,,100.0,509,reported,0.049115913555992145,,,,,,,,,,,,,,,,,,
+Blau2024,interface,D1_full_dose,,,,,,,,,509,,,,,,,,,,,,,,,,,"electrode-skin EIS on human skin, 1 Hz-1 MHz (Bio-Logic SP-200), plotted only; Block-6 compared with two other PEDOT elastomers (supplement)",,"soft conductive block-copolymer elastomer (PEDOT:PSS-based 'Block-6'), stretchable serpentine concentric layout",True
 Boljanic2022,delivered,D1_full_dose,tactile_display,10.0,thigh,biphasic_symmetric,0.1,9.0,300.0,30.0,78.53981633974483,from_diameter,11.459155902616464,2.7,3.4377467707849396,0.10313240312354817,0.2935199649933684,I_low_density_large_area,,,,,,,,,,,,,False
 Boljanic2024,delivered,D1_full_dose,tactile_display,32.0,thigh,biphasic_symmetric,0.1,2.0,300.0,30.0,78.5,reported,2.5477707006369426,0.6,0.7643312101910827,0.022929936305732482,0.014502165065740336,I_low_density_large_area,,,,,,,,,,,,,False
 Caldwell2013,envelope,D2_instrument_envelope,tactile_display,,,,,10.0,,,,,,,,,,,290.0,,,,,50000.0,1.0,,True,,,,False
