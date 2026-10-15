@@ -205,7 +205,7 @@ function drawDose() {
     const html = `<b>${esc(p.first_author || r.citekey)} ${esc(p.year || "")}</b><br>${esc(g.label)}<br>` +
       `Q ${fmt(r.Q_uC)} µC · D ${fmt(r.D_uC_cm2)} µC cm⁻²<br>${fmt(r.current_mA_max ?? r.current_mA_min)} mA · ` +
       `${fmt(r.pulse_width_us)} µs · ${fmt(r.area_mm2)} mm²${r.area_source === "from_diameter" ? " (from diameter)" : r.area_source === "reviewer_estimate" ? " (estimated)" : ""}` +
-      (r.body_site ? `<br>${esc(r.body_site)}` : "");
+      (r.body_site ? `<br>${esc(r.body_site)}` : "") + (r.condition ? `<br><i>${esc(r.condition)}</i>` : "");
     hit.addEventListener("mousemove", (ev) => showTip(html, ev));
     hit.addEventListener("mouseleave", hideTip);
     hit.addEventListener("focus", () => { const b = hit.getBoundingClientRect(); showTip(html, { clientX: b.right, clientY: b.bottom }); });
@@ -341,7 +341,7 @@ $("#results").addEventListener("click", (e) => {
   d.hidden = !open;
 });
 
-const SHOW = [["current_mA_min", "Current min, mA"], ["current_mA_max", "Current max, mA"], ["pulse_width_us", "Pulse width, µs"],
+const SHOW = [["condition", "Configuration"], ["current_mA_min", "Current min, mA"], ["current_mA_max", "Current max, mA"], ["pulse_width_us", "Pulse width, µs"],
   ["pulse_rate_Hz", "Pulse rate, Hz"], ["area_mm2", "Electrode area, mm²"], ["Q_uC", "Charge per phase, µC"],
   ["D_uC_cm2", "Charge density, µC cm⁻²"], ["density_band", "Density band"], ["body_site", "Body site"],
   ["waveform_polarity", "Waveform"], ["compliance_V", "Compliance, V"], ["n_channels", "Channels"],

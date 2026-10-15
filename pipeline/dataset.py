@@ -14,7 +14,7 @@ from config import DATA, SYNTHESIS
 PAPER_COLS = ["citekey", "first_author", "year", "title", "venue", "venue_type", "venue_key", "doi", "contribution_class",
               "secondary_class", "stimulation_regime", "tier", "delivers_stimulus_to_humans", "n_participants",
               "has_device_envelope", "key_design_claim", "obligation_rationale", "in_bib", "source", "status"]
-RECORD_COLS = ["citekey", "record_type", "tier", "dose_group", "n_participants", "body_site", "waveform_polarity",
+RECORD_COLS = ["citekey", "record_type", "condition", "tier", "dose_group", "n_participants", "body_site", "waveform_polarity",
                "current_mA_min", "current_mA_max", "pulse_width_us", "pulse_rate_Hz", "area_mm2", "area_source",
                "J_peak_mA_cm2", "Q_uC", "D_uC_cm2", "Javg_mA_cm2", "frac_shannon_k15", "density_band",
                "compliance_V", "pulse_width_us_min", "pulse_width_us_max", "pulse_rate_Hz_min", "pulse_rate_Hz_max",

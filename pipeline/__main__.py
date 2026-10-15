@@ -155,6 +155,8 @@ def draft(d, st):
     # comparison studies deliver more than one configuration (Daneffel2025: half-sine vs rectangular); the
     # schema holds one, so the others ride in "extra_delivered" as overrides of the first delivered record
     base = next((r for r in recs if r["record_type"] == "delivered"), None)
+    if base is not None and x.get("del_condition"):
+        base["condition"] = x["del_condition"]
     for extra in x.get("extra_delivered", []) if base else []:
         recs.append({**base, **extra})
     # an area the paper doesn't state but a reviewer estimated from its geometry (Duente2023: half of a 46 mm
