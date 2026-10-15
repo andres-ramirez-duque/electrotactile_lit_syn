@@ -157,6 +157,12 @@ def draft(d, st):
     base = next((r for r in recs if r["record_type"] == "delivered"), None)
     for extra in x.get("extra_delivered", []) if base else []:
         recs.append({**base, **extra})
+    # an area the paper doesn't state but a reviewer estimated from its geometry (Duente2023: half of a 46 mm
+    # disc) must stay distinguishable from a reported one
+    if x.get("area_source_override"):
+        for r in recs:
+            if r["record_type"] == "delivered" and r.get("area_mm2") == r.get("area_mm2"):  # not NaN
+                r["area_source"] = x["area_source_override"]
     records = [dataset.derive({**{k: ("" if v != v else v) for k, v in r.items()}, "citekey": st["citekey"]})
                for r in recs]
     return paper, records

@@ -204,7 +204,7 @@ function drawDose() {
     const p = DATA.byKey[r.citekey] || {};
     const html = `<b>${esc(p.first_author || r.citekey)} ${esc(p.year || "")}</b><br>${esc(g.label)}<br>` +
       `Q ${fmt(r.Q_uC)} µC · D ${fmt(r.D_uC_cm2)} µC cm⁻²<br>${fmt(r.current_mA_max ?? r.current_mA_min)} mA · ` +
-      `${fmt(r.pulse_width_us)} µs · ${fmt(r.area_mm2)} mm²${r.area_source === "from_diameter" ? " (from diameter)" : ""}` +
+      `${fmt(r.pulse_width_us)} µs · ${fmt(r.area_mm2)} mm²${r.area_source === "from_diameter" ? " (from diameter)" : r.area_source === "reviewer_estimate" ? " (estimated)" : ""}` +
       (r.body_site ? `<br>${esc(r.body_site)}` : "");
     hit.addEventListener("mousemove", (ev) => showTip(html, ev));
     hit.addEventListener("mouseleave", hideTip);
