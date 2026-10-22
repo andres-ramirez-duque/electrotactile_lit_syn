@@ -20,7 +20,8 @@ SERIES = [
     (r"Engineering in Medicine and Biology|\bIEMBS\b|\bEMBC\b", "IEEE EMBC"),
     (r"Conference on Neural Engineering", "IEEE/EMBS Neural Engineering (NER)"),
     (r"World Haptics", "IEEE World Haptics (WHC)"),
-    (r"Haptic Interfaces for Virtual Environment", "IEEE Haptics Symposium"),
+    (r"Haptic Interfaces for Virtual Environment|Haptics Symposium", "IEEE Haptics Symposium"),  # its pre-2004 name and today's
+    (r"Mobile and Ubiquitous Multimedia", "ACM MUM"),
     (r"^Haptics: ", "EuroHaptics"),  # its LNCS volumes are titled "Haptics: ..."
     (r"Intelligent Robotics and Applications", "ICIRA"),
     (r"User Interface Software and Technology", "ACM UIST"),
