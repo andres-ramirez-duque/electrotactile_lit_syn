@@ -66,6 +66,8 @@ Design: `docs/architecture.md`. Run with `.venv/Scripts/python -m pipeline <comm
   Pending: Lim2024 on hold (reviewer to pick the experiment to record). Graczyk2024 and Blau2024 committed.
 - Done 2026-10-22: 'References from proposal' screening: 9 committed (Akhtar2014, Ara2014, Garenfeld2023a, Zhou2023,
   Yem2026, Simon2025, Altinsoy2012, DAlonzo2014, Ota2025), ElectricItch (Pohl 2018) excluded.
+- Done 2026-11-06: UIST 2026 electrotactile papers committed (Chien2026, Jiang2026, WenLi2026, WenxuanLi2026, Zhang2026).
+  EMS papers from that program (MuscleJockey, RampEMS, Embodied-AI) not added yet, by decision.
 - Choose the language-model backend (GitHub Models/Copilot, an open model, or the Claude API).
 - Site: chart labels are small at phone width; the checker's PDF upload is untested on a real PDF.
 

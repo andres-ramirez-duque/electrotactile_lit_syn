@@ -76,7 +76,8 @@ def cmd_add(a):
     bib_keys = ml.assign_citekeys(bib)
     in_bib = {ml.norm_doi(e["doi"]): bib_keys[e["key"]] for e in bib if e.get("doi") and e["key"] in bib_keys}
     existing.update(in_bib)
-    key = existing.get(doi) or resolve.new_citekey(entry, taken_keys())
+    # --key: a reviewer's clearer key wins for a new paper (WenLi2026 vs WenxuanLi2026, not Li2026/Li2026a)
+    key = existing.get(doi) or a.key_override or resolve.new_citekey(entry, taken_keys())
 
     d = WORK / key
     d.mkdir(parents=True, exist_ok=True)
@@ -248,7 +249,9 @@ def main():
     ap = argparse.ArgumentParser(prog="python -m pipeline")
     ap.add_argument("--backend", default="manual", help="language-model backend (default: manual)")
     sub = ap.add_subparsers(dest="cmd", required=True)
-    sub.add_parser("add").add_argument("source")
+    p = sub.add_parser("add")
+    p.add_argument("source")
+    p.add_argument("--key", dest="key_override", help="citation key to use instead of the automatic AuthorYear")
     for c in ("run", "review", "approve", "commit"):
         sub.add_parser(c).add_argument("key")
     p = sub.add_parser("attach")
