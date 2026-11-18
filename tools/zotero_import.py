@@ -180,8 +180,11 @@ def main():
 
     # items
     new = []
+    # items made for side projects (e.g. "subtask_sweating") live in their own Zotero collection and must not be
+    # re-created as corpus items when Better BibTeX exports them into the .bib
+    side = {k for name, s in state.items() if name.startswith("subtask_") for k in s.get("items", {})}
     for e, ck, c in plan:
-        if e["key"] in state["items"]:
+        if e["key"] in state["items"] or e["key"] in side:
             continue
         cols = [state["collections"][PARENT]]
         tags, extra = [], []

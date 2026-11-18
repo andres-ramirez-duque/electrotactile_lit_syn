@@ -7,3 +7,4 @@ out/
 __pycache__/
 *.pdf
 local.json
+subtasks/
