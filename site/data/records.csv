@@ -117,6 +117,8 @@ Nwokoye2024,interface,,D2_instrument_envelope,tactile_display,,,,,,,,,,,,,,,,,,,
 Ogihara2023,delivered,,D1n_nondisplay_dose,tactile_display,,wrist (median and ulnar nerve bundles),not_reported,,3.0,,,,unknown,,,,,,,,,,,,,,,,,,,
 Pawling2017,delivered,,D1_full_dose,fibre_selective_on_skin,,volar forearm and palm,no_delivery,,,,,,unknown,,,,,,,,,,,,,,,,,,,False
 Pena2021,interface,,D4_no_dose_obligation,,,,,,,,,,,,,,,,,,,,,,,,,,"cuff impedance at 10 kHz: tripolar 0.82-1.30 kOhm (median 0.92), bipolar 2.00-3.20 kOhm (median 2.70)",10000,Pt-Ir 90-10 ribbon contacts (nerve cuff),False
+Perera2024,delivered,,D1_full_dose,tactile_display,10.0,index fingertip,not_reported,,,100.0,39.0625,3.141592653589793,from_diameter,,,,,,,,,,,,,,,,,,,
+Perera2024,interface,,D1_full_dose,,,,,,,,,,,,,,,,,,,,,,,,,,"electrode-skin impedance R = V/I at a sub-sensory probe pulse (100 us), mapped to applied force 1-5 N with a third-order polynomial per surface design",,3D-printed surfaces with 2 mm cylindrical rod electrodes (64 channels); 0-3 mA voltage-to-current source,True
 Perera2025,envelope,,D2_instrument_envelope,tactile_display,,,,,10.0,,,,,,,,,,,270.0,1.0,,1.0,250.0,,,,False,,,,False
 Poletto1999,delivered,,D1_full_dose,tactile_display,3.0,fingertip (volar tip of third finger),monophasic,0.5,12.0,50.0,,50.26548245743669,from_diameter,23.8732414637843,0.6,1.193662073189215,,0.022648145447019163,I_low_density_large_area,,,,,,,,,,,,,False
 Poletto1999,envelope,,D2_instrument_envelope,tactile_display,,,,,25.0,,,,,,,,,,,800.0,1.0,,,,,1.0,,True,,,,False
