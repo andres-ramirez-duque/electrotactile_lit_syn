@@ -72,6 +72,15 @@ def upsert(papers_new, records_new):
     write("records.csv", records, RECORD_COLS)
 
 
+def upsert_geometry(key, electrodes, impedances):
+    """Replace one paper's rows in data/geometry.csv and data/impedance.csv."""
+    import geometry
+    for name, new, cols in (("geometry.csv", electrodes, geometry.ELECTRODE_COLS),
+                            ("impedance.csv", impedances, geometry.IMPEDANCE_COLS)):
+        rows = [r for r in read(name) if r["citekey"] != key] + new
+        write(name, sorted(rows, key=lambda r: r["citekey"].lower()), cols)
+
+
 def seed_from_synthesis():
     """One-off: load the 2026-09-17 synthesis (table4 papers, table1 records) under the current citekeys.
 

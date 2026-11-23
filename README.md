@@ -46,6 +46,9 @@ Design: `docs/architecture.md`. Run with `.venv/Scripts/python -m pipeline <comm
   `manual` backend; tested on Hugosdottir2019 (2026-10-02), which is waiting for a person's approval.
 - `commit` (dataset + shared folder + Zotero) has not run yet; it will on the first approval.
 - `publish` writes `site/data/`; the site (`site/`) is static and previewed with `python -m http.server`.
+- `geometry` stage (2026-11-23): pitch, gap, contact, return path, coupling, impedance (`pipeline/geometry.py`, tests in
+  `tests/`). Ported from the skill, kept independent; mines only papers in `data/papers.csv`, from the shared folder.
+  Drafts for 64 papers (86 electrode, 20 impedance rows) wait for a person's approval; `data/geometry.csv` is empty until then.
 - Language-model backend: only `manual` so far. API backends are a later decision.
 
 ## Library migration: manual decisions

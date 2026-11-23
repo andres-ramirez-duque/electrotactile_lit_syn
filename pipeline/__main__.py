@@ -9,6 +9,10 @@
   status                 every paper in work/ and its stage
   seed                   rebuild data/ from the 2026-09-17 synthesis (one-off)
   publish                write site/data/*.json from data/ for the static site
+  geometry mine [key..]  queue electrode-geometry sentences and write the model request (default: whole corpus)
+  geometry review <key>  show the drafted geometry and the audit (quote in paper, number in quote)
+  geometry approve <key> accept it into data/geometry.csv and data/impedance.csv
+  geometry summary       reporting rates and derived figures over the approved rows
   venues                 refresh venue type/name for every paper (Crossref, cached) and show the ranking
 
 Every stage records its result in work/papers/<citekey>/state.json, so a paper can stop anywhere (waiting for a
@@ -26,6 +30,7 @@ import config  # noqa: F401  (sets sys.path for the tools and the kernel)
 from config import WORK
 import dataset
 import fetch
+import geometry
 import kernel
 import llm
 import match_library as ml
@@ -118,6 +123,7 @@ def cmd_run(a):
         (d / "model_input.txt").write_text(text[:FRONT_MATTER] + "\n\n[...]\n\n" + kernel.etd_parameter_excerpts(text),
                                            encoding="utf-8")
         st["stage"] = "text"
+        geometry_request(a.key, text)
     if st["stage"] in ("text", "classified"):
         ans = llm.classify(a.backend, d, kernel.etd_classification_system(), kernel.etd_classification_tool(),
                            (d / "model_input.txt").read_text(encoding="utf-8"))
@@ -221,6 +227,94 @@ def cmd_attach(a):
     cmd_run(a)
 
 
+def geometry_dir(key):
+    return WORK.parent / "geometry" / key
+
+
+def geometry_text(key):
+    """Text of a corpus paper, from the shared folder only: the raw References folder is another project's input."""
+    d = geometry_dir(key)
+    txt = d / f"{key}.txt"
+    if not txt.exists():
+        pdf = config.SHARED / f"{key}.pdf"
+        if not pdf.exists():
+            pdf = WORK / key / "paper.pdf"  # a new paper that is not in the shared folder yet
+        if not pdf.exists():
+            return None
+        d.mkdir(parents=True, exist_ok=True)
+        tmp = d / "pdf"
+        tmp.mkdir(exist_ok=True)
+        shutil.copy2(pdf, tmp / f"{key}.pdf")
+        kernel.etd_extract_pdf_text(str(tmp), out_dir=str(d))
+        shutil.rmtree(tmp)
+    return txt.read_text(encoding="utf-8") if txt.exists() else None
+
+
+def geometry_request(key, text):
+    d = geometry_dir(key)
+    d.mkdir(parents=True, exist_ok=True)
+    q = geometry.mine(text)
+    (d / "queue.json").write_text(json.dumps(q, indent=1, ensure_ascii=False), encoding="utf-8")
+    (d / "request.json").write_text(json.dumps({"system": geometry.system(), "tool": geometry.tool(),
+                                    "input": "\n".join(r["sentence"] for r in q)}, ensure_ascii=False), encoding="utf-8")
+    return q
+
+
+def cmd_geometry(a):
+    corpus = [p["citekey"] for p in dataset.read("papers.csv")]
+    if a.action == "summary":
+        e, z = dataset.read("geometry.csv"), dataset.read("impedance.csv")
+        print(f"{len(e)} electrode rows, {len(z)} impedance rows, {len({r['citekey'] for r in e + z})} papers")
+        for c in sorted(geometry.completeness(e), key=lambda c: -c["n"]) if e else []:
+            print(f"  {c['field']:28} {c['n']:3}/{c['of']}")
+        ok = [r for r in z if r["Z_source"] == "measured" and geometry._f(r["area_mm2"]) and geometry._f(r["Z_ohm"])]
+        print("  measured Z vs area:", geometry.fit_impedance([r["area_mm2"] for r in ok], [r["Z_ohm"] for r in ok]))
+        return
+    if a.action == "mine":
+        n = 0
+        for key in a.keys or corpus:
+            text = geometry_text(key)
+            if text is None:
+                print(f"{key}: no PDF")
+                continue
+            q = geometry_request(key, text)
+            n += len(q)
+            if len(text) < 3000:
+                print(f"{key}: image-only PDF, nothing to mine")
+        print(f"{n} candidate sentences queued in {WORK.parent / 'geometry'}")
+        return
+    for key in a.keys:
+        f = geometry_dir(key) / "response.json"
+        if not f.exists():
+            print(f"{key}: no {f.name} yet")
+            continue
+        ans = json.loads(f.read_text(encoding="utf-8"))
+        problems = geometry.audit(ans, geometry_text(key) or "")
+        e, z = geometry.rows(key, ans)
+        if a.action == "review":
+            print(f"\n{key}")
+            for kind, rs, src in (("electrode", e, ans.get("electrodes", [])), ("impedance", z, ans.get("impedances", []))):
+                for r, o in zip(rs, src):
+                    print(f"  [{kind}] " + ", ".join(f"{k}={v}" for k, v in r.items()
+                                                      if v not in ("", None) and k != "citekey"))
+                    for q in o.get("quotes", []):
+                        print(f"     “{q}”")
+            for b in problems:
+                print("  !", b)
+        else:
+            if problems and not a.override:
+                print(f"{key}: not approved, audit found:\n  " + "\n  ".join(problems))
+                continue
+            if key not in corpus:
+                print(f"{key}: not in data/papers.csv; commit the paper first")
+                continue
+            if problems:
+                for r in e + z:
+                    r["notes"] = "; ".join(x for x in (r.get("notes"), f"reviewer override: {a.override}") if x)
+            dataset.upsert_geometry(key, e, z)
+            print(f"{key}: {len(e)} electrode and {len(z)} impedance rows written to data/")
+
+
 def cmd_status(a):
     for d in sorted(WORK.glob("*/state.json")):
         st = json.loads(d.read_text(encoding="utf-8"))
@@ -257,6 +351,10 @@ def main():
     p = sub.add_parser("attach")
     p.add_argument("key")
     p.add_argument("pdf")
+    p = sub.add_parser("geometry")
+    p.add_argument("action", choices=("mine", "review", "approve", "summary"))
+    p.add_argument("keys", nargs="*")
+    p.add_argument("--override", help="approve despite audit findings; the reason goes into the notes")
     sub.add_parser("status")
     sub.add_parser("seed")
     sub.add_parser("publish")
