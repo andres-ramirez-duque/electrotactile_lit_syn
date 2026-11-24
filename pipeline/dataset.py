@@ -67,9 +67,20 @@ def upsert(papers_new, records_new):
     papers = [p for p in read("papers.csv") if p["citekey"] not in keys] + papers_new
     records = [r for r in read("records.csv") if r["citekey"] not in keys] + records_new
     papers.sort(key=lambda p: p["citekey"].lower())
-    records.sort(key=lambda r: (r["citekey"].lower(), r["record_type"]))
+    apply_corrections(records).sort(key=lambda r: (r["citekey"].lower(), r["record_type"]))
     write("papers.csv", papers, PAPER_COLS)
     write("records.csv", records, RECORD_COLS)
+
+
+def apply_corrections(records):
+    """Reviewer corrections to single record values (data/corrections.csv), re-applied on every rebuild so a seed or a
+    re-extraction cannot silently undo them. Derived dose columns are recomputed."""
+    for c in read("corrections.csv"):
+        for r in records:
+            if r["citekey"] == c["citekey"] and r["record_type"] == c["record_type"]:
+                r[c["field"]] = c["value"]
+                derive(r)
+    return records
 
 
 def upsert_geometry(key, electrodes, impedances):
@@ -134,7 +145,7 @@ def seed_from_synthesis():
     papers = [p for p in papers if p["citekey"] not in keep] + later
     records = [r for r in records if r["citekey"] not in keep] + [r for r in read("records.csv") if r["citekey"] in keep]
     write("papers.csv", sorted(papers, key=lambda p: p["citekey"].lower()), PAPER_COLS)
-    write("records.csv", sorted(records, key=lambda r: (r["citekey"].lower(), r["record_type"])), RECORD_COLS)
+    write("records.csv", sorted(apply_corrections(records), key=lambda r: (r["citekey"].lower(), r["record_type"])), RECORD_COLS)
     backfill_venues()
     return len(papers), len(records)
 
@@ -197,7 +208,7 @@ def publish():
                       "venues": ranked}.items():
         (SITE_DATA / f"{name}.json").write_text(json.dumps(obj, ensure_ascii=False, separators=(",", ":"),
                                                            allow_nan=False, default=str), encoding="utf-8")
-    for name in ("papers.csv", "records.csv"):  # the downloadable dataset, same files as data/
+    for name in ("papers.csv", "records.csv", "geometry.csv", "impedance.csv", "corrections.csv"):  # the downloads
         shutil.copy2(DATA / name, SITE_DATA / name)
     return len(papers), len(records), len(comp)
 

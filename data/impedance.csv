@@ -1,0 +1,21 @@
+citekey,configuration,Z_ohm_min,Z_ohm_max,Z_definition,Z_source,measurement_freq_Hz,measurement_current_mA,coupling_state,area_mm2,body_site,Z_ohm,Z_area_ohm_cm2,notes
+Cornman2017,,10000,100000,typical skin impedance,cited,,,,,forearm,55000.0,,
+Gregory2009,dry,185960,185960,"Rp of Rs + Rp||Cp fit, one subject, mean",measured,,,dry,0.454,index fingertip,185960.0,844.3,"fc 8.33 kHz in the table is the fitted corner frequency, not a measurement frequency"
+Gregory2009,damp,20200,165000,"Rp of Rs + Rp||Cp fit, range over subjects",measured,,,wet,0.454,fingertip,92600.0,420.4,
+Kaczmarek2003,,150000,300000,electrode-skin interface resistance (method not given),stated,,,,0.6221,fingertip,225000.0,1399.7,coupling at measurement not stated
+Kajimoto2016,,50000,50000,"fingertip resistance, design value (no measurement described)",stated,,5,,0.7854,fingertip,50000.0,392.7,
+Morch2011,0.2 mm,747000,747000,measured electrode impedance at 1 kHz,measured,1000,,,0.0314,volar forearm,747000.0,234.6,
+Morch2011,0.9 mm,1143000,1143000,measured electrode impedance at 1 kHz,measured,1000,,,0.6362,volar forearm,1143000.0,7271.8,
+Morch2011,1.5 mm,1038000,1038000,measured electrode impedance at 1 kHz,measured,1000,,,1.7671,volar forearm,1038000.0,18342.5,
+Morch2011,2.0 mm,882000,882000,measured electrode impedance at 1 kHz,measured,1000,,,3.1416,volar forearm,882000.0,27708.9,
+Morch2011,20 mm,75000,75000,measured electrode impedance at 1 kHz,measured,1000,,,314.1593,volar forearm,75000.0,235619.5,
+Poletto1999,1 mm disc,10000,320000,"parallel resistance Rp, falls with current",measured,,,,0.7854,fingertip,165000.0,1295.9,"25 mA to 0.5 mA; well-hydrated, conditioned skin: the midpoint is not meaningful"
+Schaning2008,,320000,320000,"resistive component, highest reported",cited,,,,,fingertip,320000.0,,cites earlier work
+StephensFripp2018,disposable pair,3200,3200,electrode impedance read at 5 kHz,measured,5000,,,,,3200.0,,
+StephensFripp2018,concentric graphene,6200,6200,electrode impedance read at 5 kHz,measured,5000,,,,,6200.0,,
+StephensFripp2018,dual graphene,8000,8000,electrode impedance read at 5 kHz,measured,5000,,,,,8000.0,,
+Strong1970,dry,2000000,2000000,"skin resistance, bare electrodes",measured,,,dry,2.4829,finger,2000000.0,49658.0,
+Strong1970,wet,5000,10000,"skin resistance, bare electrodes",measured,,,wet,2.4829,finger,7500.0,186.2,
+Trout2023,,25000,25000,"interface impedance of small dry electrodes, used as a design requirement",design_target,,,dry,44,,25000.0,11000.0,
+VargasLuna2015,"ETD, constant current",498,498,series resistance Rs of a fitted dynamic model,measured,,,hydrogel,5000,anterior thigh,498.0,24900.0,"Rs only, not comparable with a parallel resistance Rp"
+VargasLuna2015,"ETC, constant current",670,670,series resistance Rs of a fitted dynamic model,measured,,,hydrogel,2500,anterior thigh,670.0,16750.0,"Rs only, not comparable with a parallel resistance Rp"

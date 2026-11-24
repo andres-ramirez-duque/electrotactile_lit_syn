@@ -1,0 +1,15 @@
+citekey,record_type,field,value,decided,reason
+Alotaibi2022,delivered,area_mm2,1800,2026-11-24,60 x 30 mm electrode
+Alotaibi2022,delivered,area_source,from_dimensions,2026-11-24,60 x 30 mm electrode
+Garenfeld2023a,delivered,area_mm2,12,2026-11-24,3 x 4 mm active pads (matrix designs M1 and M2)
+Garenfeld2023a,delivered,area_source,from_dimensions,2026-11-24,3 x 4 mm active pads (matrix designs M1 and M2)
+Mereu2024,delivered,area_mm2,490.874,2026-11-24,25 mm electrode
+Mereu2024,delivered,area_source,from_diameter,2026-11-24,25 mm electrode
+Noccaro2024,delivered,area_mm2,78.5398,2026-11-24,10 mm pads
+Noccaro2024,delivered,area_source,from_diameter,2026-11-24,10 mm pads
+Szeto1985,delivered,area_mm2,8.0425,2026-11-24,3.2 mm active cathode centre
+Szeto1985,delivered,area_source,from_diameter,2026-11-24,3.2 mm active cathode centre
+Tigerholm2020,delivered,area_mm2,0.031416,2026-11-24,0.2 mm pin cathode; the 8.8 recorded before is the anode
+Tigerholm2020,delivered,area_source,from_diameter,2026-11-24,0.2 mm pin cathode; the 8.8 recorded before is the anode
+Valette2023,delivered,area_mm2,70.8822,2026-11-24,9.5 mm cathodes
+Valette2023,delivered,area_source,from_diameter,2026-11-24,9.5 mm cathodes

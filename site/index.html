@@ -67,7 +67,7 @@
         <h3>Contribution</h3><div id="f-class"></div>
         <h3>Reporting tier</h3><div id="f-tier"></div>
         <h3>Data</h3>
-        <p class="muted" style="font-size:.85rem">Download the dataset: <a href="data/papers.csv">papers.csv</a> · <a href="data/records.csv">records.csv</a></p>
+        <p class="muted" style="font-size:.85rem">Download the dataset: <a href="data/papers.csv">papers.csv</a> · <a href="data/records.csv">records.csv</a> · <a href="data/geometry.csv">geometry.csv</a> · <a href="data/impedance.csv">impedance.csv</a></p>
       </aside>
       <div>
         <div class="count" id="count"></div>
@@ -123,8 +123,12 @@
       <p>Each value is drafted by a language model from the paper's text and approved by a person before it enters the dataset.</p>
     </div>
     <div class="card">
+      <h2>Electrode geometry and skin interface</h2>
+      <p>Contact size and shape, pitch, gap, return path, coupling and skin–electrode impedance are recorded separately, one row per electrode. Pitch (centre-to-centre) and gap (edge-to-edge) are kept apart; spacing whose basis a paper does not state has its own column, and nothing is derived from it. Areas worked out from stated dimensions are marked as such. Impedances carry their source (measured, stated, cited or a design target), and the measurement frequency where the paper gives one.</p>
+    </div>
+    <div class="card">
       <h2>Data and reuse</h2>
-      <p>The dataset holds bibliographic metadata and extracted parameters only; follow each DOI for the paper itself. <a href="data/papers.csv">papers.csv</a> · <a href="data/records.csv">records.csv</a></p>
+      <p>The dataset holds bibliographic metadata and extracted parameters only; follow each DOI for the paper itself. <a href="data/papers.csv">papers.csv</a> · <a href="data/records.csv">records.csv</a> · <a href="data/geometry.csv">geometry.csv</a> · <a href="data/impedance.csv">impedance.csv</a> · <a href="data/corrections.csv">corrections.csv</a></p>
       <p>Dataset licensed <a href="https://creativecommons.org/licenses/by/4.0/" rel="license noopener" target="_blank">CC BY 4.0</a>; please cite: Ramirez-Duque, A. (2026). <i>Electrotactile literature synthesis</i> [Data set]. <a href="https://github.com/andres-ramirez-duque/electrotactile_lit_syn">github.com/andres-ramirez-duque/electrotactile_lit_syn</a>. Code: MIT.</p>
     </div>
   </section>
@@ -134,7 +138,7 @@
 <div class="tip" id="tip" role="tooltip" hidden></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" defer></script>
-<script src="assets/app.js?v=7b3c1925" defer></script>
+<script src="assets/app.js?v=e70e169f" defer></script>
 <script src="assets/checker.js?v=350c05b3" defer></script>
 </body>
 </html>
